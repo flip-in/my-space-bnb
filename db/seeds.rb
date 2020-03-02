@@ -3,8 +3,7 @@ require 'open-uri'
 
 puts 'cleaning database'
 Spaceship.destroy_all
-User.create(email: 'me@me.com', password: 'password' )
-User.create(email: 'you@you.com', password: 'password' )
+User.create(email: 'test@test.com', password: 'password' )
 
 puts 'Creating spaceships...'
 
@@ -18,7 +17,7 @@ puts 'Creating spaceships...'
   spaceships = spaceship_repo["results"]
 
   spaceships.each do |spaceship|
-    Spaceship.create(
+    spaceship = Spaceship.new(
       name: spaceship['name'],
       passengers: spaceship['passengers'],
       length: spaceship['length'],
@@ -27,9 +26,16 @@ puts 'Creating spaceships...'
       crew: spaceship['crew'],
       location: Faker::Address.city,
       manufacturer: spaceship['manufacturer'],
-      description: Faker::Movies::StarWars.quote,
-      user: User.all.sample
+      description: Faker::Movies::StarWars.quote
     )
+    user_email = Faker::Movies::StarWars.character.gsub(' ', '')
+    puts 'Email is ' + user_email
+    user = User.new(email: "#{user_email}@gmail.com", password: 'password')
+    if !(user.save)
+      user.email = "#{user_email}#{rand(1..9)}@gmail.com"
+    end
+    spaceship.user = user
+    spaceship.save
   end
 end
 
