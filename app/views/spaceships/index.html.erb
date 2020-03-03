@@ -2,14 +2,14 @@
 <p>Book your dream spaceship for your next intergalactic adventure!</p>
 
 
-<div class="spaceships m-2">
+<div class="spaceships ">
     <% @spaceships.each do |spaceship| %>
       <div class="card " style="width: 400px;">
         <div class="spaceship-image">
           <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
         </div>
         <div class="card-body">
-          <h5><%= spaceship.name %></h5>
+          <h5><%= link_to spaceship.name, spaceship_path(spaceship.id) %></h5>
           <ul>
             <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
             <li><strong>Brand: </strong><%= spaceship.manufacturer %></li>
