@@ -48,10 +48,11 @@ puts 'Creating spaceships...'
   end
 end
 
-
 puts 'Creating bookings...'
 20.times do
+new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
 first_booking = Booking.new(start_date: Date.today-rand(5000), end_date: Date.today + rand(5000), status: 'confirmed')
+
 spaceship = Spaceship.all.sample
 booking_user = User.find(spaceship.user.id + 1)
 if booking_user.nil?
@@ -60,5 +61,11 @@ end
 first_booking.user = booking_user
 first_booking.spaceship = spaceship
 first_booking.save!
+new_review.user = booking_user
+new_review.spaceship = spaceship
+new_review.save!
 end
+
+
+
 # populate a spaceship model with
