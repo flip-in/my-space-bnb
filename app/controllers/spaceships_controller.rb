@@ -22,12 +22,19 @@ class SpaceshipsController < ApplicationController
   end
 
   def edit
+    @spaceship = Spaceship.find(params[:id])
   end
 
   def update
+    @spaceship = Spaceship.find(params[:id])
+    @spaceship.update(spaceship_params)
+    redirect_to spaceships_path(@spaceship.id)
   end
 
   def destroy
+    @spaceship = Spaceship.find(params[:id])
+    @spaceship.destroy
+    redirect_to spaceships_path
   end
 
 private
