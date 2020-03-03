@@ -19,16 +19,21 @@
         <li><strong>Crew Onboard: </strong><%= @spaceship.crew %></li>
       </ul>
 
-    <a href="#" class="btn btn-primary">Book now!</a>
+    <%= link_to "Book now!", new_spaceship_booking_path(@spaceship), class: "btn btn-primary" %>
   </div>
-  <div class="edit">
-    <%= link_to "Edit Spaceship", edit_spaceship_path %>
-  </div>
-  <div class='delete'>
-    <%= link_to spaceship_path(@spaceship.id), method: :delete, data: {confirm: "Are you sure?"} do %>
-    <i class="far fa-trash-alt" style="font-size: 14px"></i>
+    <% if policy(@spaceship).edit? %>
+      <div class="edit">
+        <%= link_to "Edit Spaceship", edit_spaceship_path %>
+      </div>
     <% end %>
-  </div>
+    <% if policy(@spaceship).destroy? %>
+      <div class='delete'>
+        <%= link_to spaceship_path(@spaceship.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+          <i class="far fa-trash-alt" style="font-size: 14px"></i>
+        <% end %>
+      </div>
+    <% end %>
+
   <div class="reviews">
     <h1>Reviews for <%= @spaceship.name %></h1>
     <% @spaceship.reviews.each do |review| %>

@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
     @spaceship = Spaceship.find(params[:spaceship_id])
+    authorize @review
   end
 
   def create
@@ -9,6 +10,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     @review.spaceship = @spaceship
+    authorize @review
     if @review.save
       redirect_to spaceship_path(@spaceship)
     else
