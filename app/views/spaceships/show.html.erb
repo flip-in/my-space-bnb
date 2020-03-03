@@ -19,7 +19,7 @@
         <li><strong>Crew Onboard: </strong><%= @spaceship.crew %></li>
       </ul>
 
-    <a href="#" class="btn btn-primary">Book now!</a>
+    <%= link_to "Book now!", new_spaceship_booking_path(@spaceship), class: "btn btn-primary" %>
   </div>
     <% if policy(@spaceship).edit? %>
       <div class="edit">
