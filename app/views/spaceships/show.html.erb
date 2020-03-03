@@ -21,7 +21,14 @@
 
     <a href="#" class="btn btn-primary">Book now!</a>
   </div>
-
+  <div class="edit">
+    <%= link_to "Edit Spaceship", edit_spaceship_path %>
+  </div>
+  <div class='delete'>
+    <%= link_to spaceship_path(@spaceship.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+    <i class="far fa-trash-alt" style="font-size: 14px"></i>
+    <% end %>
+  </div>
   <div class="reviews">
     <h1>Reviews for <%= @spaceship.name %></h1>
     <% 10.times do |review| %>
