@@ -1,13 +1,28 @@
-<%= simple_form_for [spaceship] do |f| %>
-  <%= f.input :name %>
-  <%= f.input :spaceship_class %>
-  <%= f.input :manufacturer %>
-  <%= f.input :location %>
-  <%= f.input :description %>
-  <%= f.input :passengers %>
-  <%= f.input :speed %>
-  <%= f.input :length %>
-  <%= f.input :crew %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+
+    <div class="col-xs-4">
+      <%= simple_form_for [spaceship] do |f| %>
+        <div class="container">
+          <div class="row justify-content-around">
+            <%= f.input :name %>
+            <%= f.input :spaceship_class %>
+            <%= f.input :location %>
+            <%= f.input :description %>
+            <%= f.input :speed %>
+            <%= f.input :length %>
+            <%= f.input :price %>
+            <%= f.input :passengers %>
+            <%= f.input :crew %>
+            <%= f.input :manufacturer %>
+          </div>
+        </div>
+      </div>
+        <% if spaceship.errors.any? %>
+          <span style="color: red"> <%= spaceship.errors[:stars][0] %></span>
+          <br>
+        <% end %>
+          <div class="d-flex flex-column">
+            <%= f.submit %>
+            <%= link_to "Back to spaceships", spaceships_path, class: "btn btn-primary my-3"  %>
+          </div>
+      </div>
+    <% end %>
