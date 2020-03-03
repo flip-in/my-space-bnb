@@ -26,7 +26,9 @@ puts 'Creating spaceships...'
       crew: spaceship['crew'],
       location: Faker::Address.city,
       manufacturer: spaceship['manufacturer'],
-      description: Faker::Movies::StarWars.quote
+      description: Faker::Movies::StarWars.quote,
+      price: rand(150..2_500),
+      rating: rand(1..5)
     )
     user_email = Faker::Movies::StarWars.character.gsub(' ', '')
     puts 'Email is ' + user_email
