@@ -1,6 +1,12 @@
 <h1>To infinity and beyond...</h1>
 <p>Book your dream spaceship for your next intergalactic adventure!</p>
 
+<div class="navbar-link add-spaceship">
+  <%= link_to new_spaceship_path do%>
+    <i class="fas fa-plus"></i> Add a spaceship
+  <% end %>
+</div>
+
 <div class="spaceships m-2">
     <% @spaceships.each do |spaceship| %>
       <div class="card " style="width: 400px;">
@@ -12,16 +18,14 @@
           <ul>
             <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
             <li><strong>Brand: </strong><%= spaceship.manufacturer %></li>
+            <li><strong>Price: </strong><%= spaceship.price %></li>
+            <li><strong>Rating: </strong><%= spaceship.rating %></li>
             <li><strong>Pickup station: </strong><%= spaceship.location %></li>
-            <li><strong>Description: </strong><%= spaceship.description %></li>
             <li><strong>Passenger Capcity: </strong><%= spaceship.passengers %></li>
-            <li><strong>Max Speed: </strong><%= spaceship.speed %></li>
-            <li><strong>Spaceship Length: </strong><%= spaceship.length %></li>
-            <li><strong>Crew Onboard: </strong><%= spaceship.crew %></li>
           </ul>
           <a href="#" class="btn btn-primary">Book now!</a>
         </div>
+      </div>
     <% end %>
-  </div>
 </div>
 
