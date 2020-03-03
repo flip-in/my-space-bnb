@@ -1,9 +1,21 @@
+require 'pry-byebug'
 require 'faker'
 require 'open-uri'
 
 puts 'cleaning database'
+Review.destroy_all
+Booking.destroy_all
 Spaceship.destroy_all
+User.destroy_all
+
+
+puts 'Creating users...'
+
 User.create(email: 'test@test.com', password: 'password' )
+
+50.times do
+  User.create(email: Faker::Internet.email, password: "password")
+end
 
 puts 'Creating spaceships...'
 
@@ -15,7 +27,7 @@ puts 'Creating spaceships...'
 
   spaceship_repo = JSON.parse(response)
   spaceships = spaceship_repo["results"]
-
+# byebug
   spaceships.each do |spaceship|
     spaceship = Spaceship.new(
       name: spaceship['name'],
@@ -31,14 +43,29 @@ puts 'Creating spaceships...'
       rating: rand(1..5)
     )
     user_email = Faker::Movies::StarWars.character.gsub(' ', '')
-    puts 'Email is ' + user_email
-    user = User.new(email: "#{user_email}@gmail.com", password: 'password')
-    if !(user.save)
-      user.email = "#{user_email}#{rand(1..9)}@gmail.com"
-    end
-    spaceship.user = user
+    spaceship.user = User.all.sample
     spaceship.save
   end
 end
+
+puts 'Creating bookings...'
+20.times do
+new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
+first_booking = Booking.new(start_date: Date.today-rand(5000), end_date: Date.today + rand(5000), status: 'confirmed')
+
+spaceship = Spaceship.all.sample
+booking_user = User.find(spaceship.user.id + 1)
+if booking_user.nil?
+  booking_user = User.find(spaceship.user.id - 1)
+end
+first_booking.user = booking_user
+first_booking.spaceship = spaceship
+first_booking.save!
+new_review.user = booking_user
+new_review.spaceship = spaceship
+new_review.save!
+end
+
+
 
 # populate a spaceship model with
