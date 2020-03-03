@@ -32,7 +32,20 @@
   <div class="reviews">
     <h1>Reviews for <%= @spaceship.name %></h1>
     <% @spaceship.reviews.each do |review| %>
-    <p><%= review.content %></p>
+      <p><%= review.content %></p>
+      <div class="stars-container">
+        <% i = 1 %>
+        <% j = 0 %>
+        <% until j == 5  %>
+          <% if i <= review.stars %>
+            <i class="fas fa-star"></i>
+          <% else %>
+            <i class="far fa-star"></i>
+          <% end %>
+          <% i += 1 %>
+          <% j += 1 %>
+        <% end %>
+      </div>
       <br>
     <% end %>
   </div>
