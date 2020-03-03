@@ -49,20 +49,20 @@ end
 
 puts 'Creating bookings and reviews...'
 20.times do
-start = Date.today + rand(14)
-new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
-first_booking = Booking.new(start_date: start, end_date: start + 7, status: 'confirmed')
-spaceship = Spaceship.all.sample
-booking_user = User.find(spaceship.user.id + 1)
-if booking_user.nil?
-  booking_user = User.find(spaceship.user.id - 1)
-end
-first_booking.user = booking_user
-first_booking.spaceship = spaceship
-first_booking.save!
-new_review.user = booking_user
-new_review.spaceship = spaceship
-new_review.save!
+  start = Date.today + rand(14)
+  new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
+  first_booking = Booking.new(start_date: start, end_date: start + 7, status: 'confirmed')
+  spaceship = Spaceship.all.sample
+  booking_user = User.find(spaceship.user.id + 1)
+  if booking_user.nil?
+    booking_user = User.find(spaceship.user.id - 1)
+  end
+  first_booking.user = booking_user
+  first_booking.spaceship = spaceship
+  first_booking.save!
+  new_review.user = booking_user
+  new_review.spaceship = spaceship
+  new_review.save!
 end
 
 
