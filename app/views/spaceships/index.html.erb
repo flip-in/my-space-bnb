@@ -2,13 +2,14 @@
 <p>Book your dream spaceship for your next intergalactic adventure!</p>
 
 
-<div class="spaceships">
+<div class="spaceships m-2">
     <% @spaceships.each do |spaceship| %>
-      <div class="spaceship">
+      <div class="card " style="width: 400px;">
         <div class="spaceship-image">
+          <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
         </div>
-        <div class="spaceship-info">
-          <h3><%= spaceship.name %></h3>
+        <div class="card-body">
+          <h5><%= spaceship.name %></h5>
           <ul>
             <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
             <li><strong>Brand: </strong><%= spaceship.manufacturer %></li>
@@ -19,6 +20,7 @@
             <li><strong>Spaceship Length: </strong><%= spaceship.length %></li>
             <li><strong>Crew Onboard: </strong><%= spaceship.crew %></li>
           </ul>
+          <a href="#" class="btn btn-primary">Book now!</a>
         </div>
     <% end %>
   </div>
