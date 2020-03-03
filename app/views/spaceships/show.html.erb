@@ -1,2 +1,32 @@
-<h1>Spaceships#show</h1>
-<p>Find me in app/views/spaceships/show.html.erb</p>
+<div class="container">
+  <h2><%= link_to "<< Back to spaceships", spaceships_path %></h2>
+  <br>
+  <div class="spaceship-image">
+    <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+   </div>
+  <div class="spaceshipid-detail">
+    <h1> <%= @spaceship.name %></h1>
+    <ul>
+      <li><strong>Type: </strong><%= @spaceship.spaceship_class %></li>
+      <li><strong>Brand: </strong><%= @spaceship.manufacturer %></li>
+      <li><strong>Pickup station: </strong><%= @spaceship.location %></li>
+      <li><strong>Description: </strong><%= @spaceship.description %></li>
+      <li><strong>Passenger Capcity: </strong><%= @spaceship.passengers %></li>
+      <li><strong>Max Speed: </strong><%= @spaceship.speed %></li>
+      <li><strong>Spaceship Length: </strong><%= @spaceship.length %></li>
+      <li><strong>Crew Onboard: </strong><%= @spaceship.crew %></li>
+    </ul>
+
+    <a href="#" class="btn btn-primary">Book now!</a>
+  </div>
+
+  <div class="reviews">
+    <h1>Reviews for <%= @spaceship.name %></h1>
+    <% 10.times do |review| %>
+      <p>Review here, like somebody wrote something really great</p>
+      <br>
+    <% end %>
+  </div>
+
+
+</div>
