@@ -6,14 +6,16 @@
 <!-- an each do loop to take the users current bookings and create cards with their details -->
 <% @current_bookings.each do |booking|%>
   <div class="card " style="width: 400px;">
-    <div class="spaceship-image">
-      <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-    </div>
+    <%= link_to booking.spaceship do %>
+      <div class="spaceship-image">
+        <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+      </div>
+    <% end %>
     <div class="card-body">
       <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
       <p><strong>Check-in: </strong><%= booking.start_date %></p>
       <p><strong>Check-out: </strong><%= booking.end_date %></p>
-      <div class="btn btn-primary">Change booking?</div>
+      <div class="btn btn-primary">Cancel booking?</div>
     </div>
   </div>
 <% end %>
@@ -22,14 +24,19 @@
 <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
 <% @past_bookings.each do |booking|%>
   <div class="card " style="width: 400px;">
-    <div class="spaceship-image">
-      <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-    </div>
+    <%= link_to booking.spaceship do %>
+      <div class="spaceship-image">
+        <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+      </div>
+    <% end %>
     <div class="card-body">
       <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
       <p><strong>Checked-in: </strong><%= booking.start_date %></p>
       <p><strong>Checked-out: </strong><%= booking.end_date %></p>
-      <div class="btn btn-primary">Add Review?</div>
+      <% unless booking.review %>
+        <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+      <% end %>
+
     </div>
   </div>
 <% end %>
