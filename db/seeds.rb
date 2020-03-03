@@ -61,7 +61,7 @@ puts 'Creating bookings and reviews...'
   first_booking.spaceship = spaceship
   first_booking.save!
   new_review.user = booking_user
-  new_review.spaceship = spaceship
+  new_review.booking = first_booking
   new_review.save!
 end
 
