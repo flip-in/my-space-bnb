@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   #SPACESHIPS
   resources :spaceships do
     resources :bookings, only: [:new, :create]
+  end
+  resources :bookings, only: [:show] do
     resources :reviews, only: [:new, :create]
   end
-  
-  resources :bookings, only: [:show]
   # get '/spaceships', to: 'spaceships#index', as: :spaceships
   # get '/spaceships/:id', to: 'spaceships#show', as: :spaceship
   # get '/spaceships/:id/new', to: 'spaceships#new', as: :new_spaceship
