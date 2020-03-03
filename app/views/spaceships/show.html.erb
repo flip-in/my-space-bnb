@@ -24,8 +24,8 @@
 
   <div class="reviews">
     <h1>Reviews for <%= @spaceship.name %></h1>
-    <% 10.times do |review| %>
-      <p>Review here, like somebody wrote something really great</p>
+    <% @spaceship.reviews.each do |review| %>
+    <p><%= review.content %></p>
       <br>
     <% end %>
   </div>

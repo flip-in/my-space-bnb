@@ -1,0 +1,5 @@
+<%= simple_form_for [spaceship, review] do |f|%>
+<%= f.input :content, as: :text %>
+<%= f.input :stars, collection: (1..5).to_a, label: "Rate your spaceship" %>
+<%= f.submit "Send your review" %>
+<% end %>
