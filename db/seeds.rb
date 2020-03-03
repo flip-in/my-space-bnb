@@ -27,7 +27,6 @@ puts 'Creating spaceships...'
 
   spaceship_repo = JSON.parse(response)
   spaceships = spaceship_repo["results"]
-# byebug
   spaceships.each do |spaceship|
     spaceship = Spaceship.new(
       name: spaceship['name'],
@@ -48,11 +47,11 @@ puts 'Creating spaceships...'
   end
 end
 
-puts 'Creating bookings...'
+puts 'Creating bookings and reviews...'
 20.times do
+start = Date.today + rand(14)
 new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
-first_booking = Booking.new(start_date: Date.today-rand(5000), end_date: Date.today + rand(5000), status: 'confirmed')
-
+first_booking = Booking.new(start_date: start, end_date: start + 7, status: 'confirmed')
 spaceship = Spaceship.all.sample
 booking_user = User.find(spaceship.user.id + 1)
 if booking_user.nil?
