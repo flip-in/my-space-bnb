@@ -17,48 +17,53 @@
     <div class="tab-pane fade show active" id="trips" role="tabpanel" aria-labelledby="trips-tab">
       <h1><strong>These are the your current trips</strong></h1>
   <!-- an each do loop to take the users current bookings and create cards with their details -->
-      <% @current_bookings.each do |booking|%>
-        <div class="card " style="width: 400px;">
-          <%= link_to booking.spaceship do %>
-            <div class="spaceship-image">
-              <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-            </div>
-          <% end %>
-          <div class="card-body">
-            <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-            <p><strong>Check-in: </strong><%= booking.start_date %></p>
-            <p><strong>Check-out: </strong><%= booking.end_date %></p>
-            <div class="btn btn-primary">Cancel booking?</div>
-          </div>
-        </div>
-      <% end %>
-      <h1><strong>These are your past trips</strong></h1>
-    <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
-      <% @past_bookings.each do |booking|%>
-        <div class="card " style="width: 400px;">
-          <%= link_to booking.spaceship do %>
-            <div class="spaceship-image">
-              <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-            </div>
-          <% end %>
-          <div class="card-body">
-            <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-            <p><strong>Checked-in: </strong><%= booking.start_date %></p>
-            <p><strong>Checked-out: </strong><%= booking.end_date %></p>
-            <% unless booking.review %>
-              <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+      <div class="current-trips"> <!-- for grid -->
+        <% @current_bookings.each do |booking|%>
+          <div class="card " style="width: 400px;">
+            <%= link_to booking.spaceship do %>
+              <div class="spaceship-image">
+                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+              </div>
             <% end %>
-  
+            <div class="card-body">
+              <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+              <p><strong>Check-in: </strong><%= booking.start_date %></p>
+              <p><strong>Check-out: </strong><%= booking.end_date %></p>
+              <div class="btn btn-primary">Cancel booking?</div>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      <h1><strong>These are your past trips</strong></h1>
+      <div class="past-trips">
+      <!-- display grid-->
+      <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
+        <% @past_bookings.each do |booking|%>
+          <div class="card " style="width: 400px;">
+            <%= link_to booking.spaceship do %>
+              <div class="spaceship-image">
+                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+              <p><strong>Checked-in: </strong><%= booking.start_date %></p>
+              <p><strong>Checked-out: </strong><%= booking.end_date %></p>
+              <% unless booking.review %>
+                <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+              <% end %>
+    
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
     <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
       <% current_user.spaceships.each do |spaceship| %>
         <div class='listing-container d-flex w-100 my-3'>
           <div class="card col-3" style="width: 400px;">
             <%= link_to spaceship do %>
-              <div class="spaceship-image">
+              <div class="spaceship-image listing-image">
                 <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
               </div>
             <% end %>

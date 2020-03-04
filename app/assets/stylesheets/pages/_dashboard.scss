@@ -5,6 +5,7 @@
     // display: none !important;
   }
   border: 1px solid black;
+  background-color: white;
 
 }
 
@@ -14,6 +15,24 @@
 }
 
 .listing-container {
+  .card {
+    padding: 0 !important;
+  }
   height: 80vh;
 }
 
+.listing-image img {
+  height: auto !important;
+}
+
+.current-trips {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.past-trips {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
