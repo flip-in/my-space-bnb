@@ -1,0 +1,19 @@
+.reservations-container {
+  .nav-tabs {
+    border-bottom: none !important;
+    flex-direction: column !important;
+    // display: none !important;
+  }
+  border: 1px solid black;
+
+}
+
+#spaceships {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listing-container {
+  height: 80vh;
+}
+

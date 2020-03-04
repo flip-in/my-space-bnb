@@ -8,8 +8,11 @@ body {
   margin: 20px;
 }
 
-.card {
-  display: flex;
-  margin-bottom: 10px;
-  border: none;
+#trips{
+  .card {
+    display: flex;
+    margin-bottom: 10px;
+    border: none;
+
+  } 
 }
