@@ -1,0 +1,41 @@
+
+<div class="dropdown">
+
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Requests
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link dropdown-item" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="false">Upcoming</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="completed-tab" data-toggle="tab" href="#completed" role="tab" aria-controls="completed" aria-selected="false">Completed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="canceled-tab" data-toggle="tab" href="#canceled" role="tab" aria-controls="canceled" aria-selected="false">Canceled</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="false">All</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" id="requests-tab" data-toggle="tab" href="#requests" role="tab" aria-controls="requests" aria-selected="true">Requests</a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="requests" role="tabpanel" aria-labelledby="requests-tab">
+    <% spaceship.bookings.each do |booking| %>
+      <%= booking.user.email %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">My confirmed listings</div>
+  <div class="tab-pane fade" id="completed" role="tabpanel" aria-labelledby="completed-tab">My completed listings</div>
+  <div class="tab-pane fade" id="canceled" role="tabpanel" aria-labelledby="canceled-tab">my canceled listings</div>
+  <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">my all listings</div>
+  <%# <div class="tab-pane fade" id="somethingelse" role="tabpanel" aria-labelledby="somethingelse-tab">my pending listings</div> %>
+</div>
