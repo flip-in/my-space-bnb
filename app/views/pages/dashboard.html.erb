@@ -1,42 +1,82 @@
-<h1>Welcome <%= current_user.email %></h1>
-
-<p>there is a tab thingy here where you can switch between your bookings and your spaceships, your rented out spaceships</p>
-
-<h1><strong>These are the your current bookings</strong></h1>
-<!-- an each do loop to take the users current bookings and create cards with their details -->
-<% @current_bookings.each do |booking|%>
-  <div class="card " style="width: 400px;">
-    <%= link_to booking.spaceship do %>
-      <div class="spaceship-image">
-        <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-      </div>
-    <% end %>
-    <div class="card-body">
-      <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-      <p><strong>Check-in: </strong><%= booking.start_date %></p>
-      <p><strong>Check-out: </strong><%= booking.end_date %></p>
-      <div class="btn btn-primary">Cancel booking?</div>
-    </div>
-  </div>
-<% end %>
-
-<h1><strong>These are your past bookings</strong></h1>
-<!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
-<% @past_bookings.each do |booking|%>
-  <div class="card " style="width: 400px;">
-    <%= link_to booking.spaceship do %>
-      <div class="spaceship-image">
-        <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-      </div>
-    <% end %>
-    <div class="card-body">
-      <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-      <p><strong>Checked-in: </strong><%= booking.start_date %></p>
-      <p><strong>Checked-out: </strong><%= booking.end_date %></p>
-      <% unless booking.review %>
-        <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+<div class="container mx-auto">
+  <h1>Welcome <%= current_user.email %></h1>
+  
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="trips-tab" data-toggle="tab" href="#trips" role="tab" aria-controls="trips" aria-selected="true">Trips</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="listings-tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false">Listings</a>
+    </li>
+    <!-- Third tab maybe not needed -->
+    <%# <li class="nav-item">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+    </li> %>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="trips" role="tabpanel" aria-labelledby="trips-tab">
+      <h1><strong>These are the your current trips</strong></h1>
+  <!-- an each do loop to take the users current bookings and create cards with their details -->
+      <% @current_bookings.each do |booking|%>
+        <div class="card " style="width: 400px;">
+          <%= link_to booking.spaceship do %>
+            <div class="spaceship-image">
+              <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+            </div>
+          <% end %>
+          <div class="card-body">
+            <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+            <p><strong>Check-in: </strong><%= booking.start_date %></p>
+            <p><strong>Check-out: </strong><%= booking.end_date %></p>
+            <div class="btn btn-primary">Cancel booking?</div>
+          </div>
+        </div>
       <% end %>
-
+      <h1><strong>These are your past trips</strong></h1>
+    <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
+      <% @past_bookings.each do |booking|%>
+        <div class="card " style="width: 400px;">
+          <%= link_to booking.spaceship do %>
+            <div class="spaceship-image">
+              <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+            </div>
+          <% end %>
+          <div class="card-body">
+            <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+            <p><strong>Checked-in: </strong><%= booking.start_date %></p>
+            <p><strong>Checked-out: </strong><%= booking.end_date %></p>
+            <% unless booking.review %>
+              <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+            <% end %>
+  
+          </div>
+        </div>
+      <% end %>
     </div>
+    <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+      <% current_user.spaceships.each do |spaceship| %>
+        <div class='listing-container d-flex w-100 my-3'>
+          <div class="card col-3" style="width: 400px;">
+            <%= link_to spaceship do %>
+              <div class="spaceship-image">
+                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <p><strong>Spaceship name: </strong><%= spaceship.name %></p>
+              <p><strong>Booking Status</strong><%= spaceship.name %> (placeholder)</p>
+            </div>
+          </div>
+          <div class="reservations-container ml-2 col-9">
+            <%= render "dropdown", spaceship: spaceship %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- Third tab maybe not needed -->
+
+    <%# <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> %>
   </div>
-<% end %>
+  
+  
+</div>
