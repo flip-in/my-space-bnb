@@ -4,7 +4,34 @@
     <%= image_tag 'MyspaceBnbLogo.png', style:"width: 1000px;" %>
     <h1>Have some intergalactic travel coming up?</h1>
     <h2>We've got you covered.</h2>
-    <a class="btn btn-primary" href="#" id="homepage-btn">Book your spaceship now   <i class="fas fa-rocket"></i></a>
+    <%= link_to spaceships_path, class:"btn btn-primary", id:"homepage-btn" do %>
+    Book your spaceship now <i class="fas fa-rocket"></i>
+    <% end %>
+  </div>
+</div>
+
+<div class="home-content">
+  <div class="home-header">
+    <h1>Rent the spaceship of your dreams</h1>
+  </div>
+  <div class="home-ships">
+    <% @spaceships.each do |spaceship| %>
+      <div class="card " style="width: 400px;">
+        <div class="spaceship-image">
+          <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+        </div>
+        <div class="card-body">
+          <h5><%= link_to spaceship.name, spaceship_path(spaceship.id) %></h5>
+          <ul>
+            <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
+            <li><strong>Price: </strong><%= spaceship.price %></li>
+            <li><strong>Rating: </strong><%= spaceship.rating %></li>
+            <li><strong>Pickup station: </strong><%= spaceship.location %></li>
+          </ul>
+          <a href="#" class="btn btn-primary">Book now!</a>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

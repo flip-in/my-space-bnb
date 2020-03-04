@@ -31,7 +31,7 @@
 #homepage-btn {
   align-self: center;
   background-color: rgba(255, 255, 255, 0.8);
-  color: rgba(219, 14, 222, 1);
+  color: rgba(226, 108, 126, 1);
   padding: 10px 20px;
   font-size: 28px;
   margin-top: 50px;
@@ -41,8 +41,33 @@
 }
 
 #homepage-btn:hover {
-  background-color: rgba(219, 14, 222, 0.9);
+  background-color: rgba(226, 108, 126, 0.9);
   color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.home-header {
+  padding-bottom: 10px;
+}
+.home-header h1 {
+  font-weight: bolder;
+  font-size: 32px;
+
+}
+.home-ships {
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+}
+
+.home-ships p {
+  color: black;
 }
 
 body {

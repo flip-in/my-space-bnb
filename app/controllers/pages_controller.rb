@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def home
+    @spaceships = Spaceship.all
+    @spaceships = @spaceships.sample(3)
   end
 
   def dashboard
