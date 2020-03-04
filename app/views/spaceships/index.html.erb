@@ -10,7 +10,7 @@
 </div>
   <div class="spaceships m-2">
     <% @spaceships.each do |spaceship| %>
-      <div class="card " style="width: 400px;">
+      <div class="card" style="width: 400px;">
         <div class="spaceship-image">
           <%= image_tag "#{rand(16)}.png", class: 'card-img-top'%>
         </div>
@@ -24,7 +24,7 @@
             <li><strong>Pickup station: </strong><%= spaceship.location %></li>
             <li><strong>Passenger Capcity: </strong><%= spaceship.passengers %></li>
           </ul>
-          <a href="#" class="btn btn-primary">Book now!</a>
+          <%= link_to "Book now!", new_spaceship_booking_path(spaceship), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>

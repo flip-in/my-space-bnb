@@ -28,7 +28,7 @@
             <li><strong>Rating: </strong><%= spaceship.rating %></li>
             <li><strong>Pickup station: </strong><%= spaceship.location %></li>
           </ul>
-          <a href="#" class="btn btn-primary">Book now!</a>
+          <%= link_to "Book now!", new_spaceship_booking_path(spaceship), class: "btn btn-primary" %>
         </div>
       </div>
     <% end %>
