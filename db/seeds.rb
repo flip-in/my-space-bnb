@@ -1,4 +1,3 @@
-require 'pry-byebug'
 require 'faker'
 require 'open-uri'
 
