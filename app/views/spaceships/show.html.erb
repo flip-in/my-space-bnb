@@ -1,8 +1,10 @@
-<div class="container">
+<div class="header-show">
   <h2><%= link_to "<< Back to spaceships", spaceships_path %></h2>
-  <br>
+</div>
+
+<div class="show-container">
   <div class="spaceship-image">
-    <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+    <%= image_tag "#{rand(16)}.png", class: 'card-img-top', id: "show-img"%>
    </div>
   <div class="spaceshipid-detail">
     <h1> <%= @spaceship.name %></h1>
