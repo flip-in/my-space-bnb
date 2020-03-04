@@ -1,13 +1,14 @@
-<h1>To infinity and beyond...</h1>
-<p>Book your dream spaceship for your next intergalactic adventure!</p>
+<div class="container justify-content-between text-center">
+  <h1>To infinity and beyond...</h1>
+  <p>Book your dream spaceship for your next intergalactic adventure!</p>
 
-<div class="navbar-link add-spaceship">
-  <%= link_to new_spaceship_path do%>
-    <i class="fas fa-plus"></i> Add a spaceship
-  <% end %>
+  <div class="navbar-link add-spaceship">
+    <%= link_to new_spaceship_path do%>
+      <i class="fas fa-plus"></i> Add a spaceship
+    <% end %>
+  </div>
 </div>
-
-<div class="spaceships m-2">
+  <div class="spaceships m-2">
     <% @spaceships.each do |spaceship| %>
       <div class="card " style="width: 400px;">
         <div class="spaceship-image">
@@ -27,6 +28,4 @@
         </div>
       </div>
     <% end %>
-</div>
-</div>
-
+  </div>
