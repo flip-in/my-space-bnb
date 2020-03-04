@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container">
   <h1>Welcome <%= current_user.email %></h1>
   
   <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -19,7 +19,7 @@
   <!-- an each do loop to take the users current bookings and create cards with their details -->
       <div class="current-trips"> <!-- for grid -->
         <% @current_bookings.each do |booking|%>
-          <div class="card " style="width: 400px;">
+          <div class="card ">
             <%= link_to booking.spaceship do %>
               <div class="spaceship-image">
                 <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
@@ -39,7 +39,7 @@
       <!-- display grid-->
       <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
         <% @past_bookings.each do |booking|%>
-          <div class="card " style="width: 400px;">
+          <div class="card">
             <%= link_to booking.spaceship do %>
               <div class="spaceship-image">
                 <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
@@ -72,7 +72,7 @@
               <p><strong>Booking Status</strong><%= spaceship.name %> (placeholder)</p>
             </div>
           </div>
-          <div class="reservations-container ml-2 col-9">
+          <div class="reservations-container ml-2 col-8">
             <%= render "dropdown", spaceship: spaceship %>
           </div>
         </div>
