@@ -17,12 +17,12 @@
     <div class="tab-pane fade show active" id="trips" role="tabpanel" aria-labelledby="trips-tab">
       <h1><strong>These are the your current trips</strong></h1>
   <!-- an each do loop to take the users current bookings and create cards with their details -->
-      <div class="current-trips"> <!-- for grid -->
-        <% if @current_bookings.empty? %>
-          <div>
-            <h2>you have no current bookings</h2>
-          </div>
-        <% else %>
+      <% if @current_bookings.empty? %>
+        <div>
+          <h2>you have no current bookings</h2>
+        </div>
+      <% else %>
+        <div class="current-trips"> <!-- for grid -->
           <% @current_bookings.each do |booking|%>
             <div class="card ">
               <%= link_to booking.spaceship do %>
@@ -39,8 +39,8 @@
               </div>
             </div>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <h1><strong>These are your past trips</strong></h1>
       <div class="past-trips">
       <!-- display grid-->

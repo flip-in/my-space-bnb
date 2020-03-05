@@ -9,7 +9,7 @@
   color: #d2d2d2;
 }
 
-.br-selected.br-current a::after {
+.br-selected, .br-active, .br-current::after {
   color: #EEB868;
 }
 
