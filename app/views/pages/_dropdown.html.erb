@@ -106,7 +106,7 @@
   <div class="tab-pane fade" id="canceled-<%= spaceship.id %>" role="tabpanel" aria-labelledby="canceled-tab">
       <h3>My Cancelled Bookings</h3>
       <% spaceship.bookings.each do |booking| %>
-      <% if booking.status == 'rejected' %>
+      <% if booking.status == 'rejected' || booking.status == 'canceled' %>
         <div class="container" id="booking-container">
           <h3><strong>Email: </strong><%= booking.user.email %></h3>
           <div>
@@ -120,6 +120,7 @@
               <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
             <% elsif booking.status == 'confirmed' %>
               <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+            <% elsif booking.status == 'canceled' %>
               <% else %>
                 <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
             <% end %>
@@ -151,5 +152,4 @@
       </div>
     <% end %>
   </div>
-  <%# <div class="tab-pane fade" id="somethingelse" role="tabpanel" aria-labelledby="somethingelse-tab">my pending listings</div> %>
 </div>
