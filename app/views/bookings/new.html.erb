@@ -1,4 +1,20 @@
-<h1>Book your Spaceship</h1>
-<p>Set sail across the cosmos</p>
+	<div id="booking" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7 col-md-push-5">
+						<div class="booking-cta">
+							<h1>Book your spaceship</h1>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi facere, soluta magnam consectetur molestias itaque
+								ad sint fugit architecto incidunt iste culpa perspiciatis possimus voluptates aliquid consequuntur cumque quasi.
+								Perspiciatis.
+							</p>
+						</div>
+					</div>
+          <%= render 'form', spaceship: @spaceship, booking: @booking %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <%= render 'form', spaceship: @spaceship, booking: @booking %>
