@@ -12,13 +12,12 @@ puts 'Creating users...'
 
 User.create(email: 'test@test.com', password: 'password' )
 
-50.times do
+20.times do
   User.create(email: Faker::Internet.email, password: "password")
 end
 
 puts 'Creating spaceships...'
 
-# get the right data from the api url
 (1..2).each do |page|
   url = "https://swapi.co/api/starships/?format=json&page=#{page}"
   puts "getting spaceships..."
@@ -46,6 +45,7 @@ puts 'Creating spaceships...'
   end
 end
 
+
 puts 'Creating bookings and reviews...'
 20.times do
   start = Date.today + rand(14)
@@ -64,6 +64,47 @@ puts 'Creating bookings and reviews...'
   new_review.save!
 end
 
+puts 'creating seeds for test account...'
 
+2.times do
+  url = "https://swapi.co/api/starships/?format=json&page=1"
+  puts "getting test account spaceships..."
+  response = open(url).read
 
-# populate a spaceship model with
+  spaceship_repo = JSON.parse(response)
+  spaceships = spaceship_repo["results"]
+  spaceships = spaceships.sample(2)
+  spaceships.each do |spaceship|
+    spaceship = Spaceship.new(
+      name: spaceship['name'],
+      passengers: spaceship['passengers'],
+      length: spaceship['length'],
+      speed: spaceship['max_atmosphering_speed'],
+      spaceship_class: spaceship['starship_class'],
+      crew: spaceship['crew'],
+      location: Faker::Address.city,
+      manufacturer: spaceship['manufacturer'],
+      description: Faker::Movies::StarWars.quote,
+      price: rand(150..2_500),
+      rating: rand(1..5),
+      user: User.first
+    )
+    spaceship.save
+  end
+end
+
+puts 'Creating bookings for test bookings...'
+
+User.first.spaceships.each do |spaceship|
+  rand(2..3).times do
+    start = Date.today + rand(4)
+    test_booking = Booking.new(
+      start_date: start,
+      end_date: start + 7,
+      status: 'pending',
+      user: User.all.sample,
+      spaceship: spaceship
+    )
+    test_booking.save
+  end
+end
