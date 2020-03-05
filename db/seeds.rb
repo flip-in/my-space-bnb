@@ -12,7 +12,7 @@ puts 'Creating users...'
 
 User.create(email: 'test@test.com', password: 'password' )
 
-20.times do
+50.times do
   User.create(email: Faker::Internet.email, password: "password")
 end
 
