@@ -1,31 +1,30 @@
 <div class="container justify-content-between text-center">
   <h1>To infinity and beyond...</h1>
   <p>Book your dream spaceship for your next intergalactic adventure!</p>
-
   <div class="navbar-link add-spaceship">
     <%= link_to new_spaceship_path do%>
       <i class="fas fa-plus"></i> Add a spaceship
     <% end %>
   </div>
 </div>
-  <div class="index-spaceships m-2">
-    <% @spaceships.each do |spaceship| %>
-      <div class="index-card" style="width: 400px;">
-        <div class="spaceship-image">
-          <%= image_tag "#{rand(16)}.png", class: 'card-img-top'%>
-        </div>
-        <div class="card-body">
-          <h5><%= link_to spaceship.name, spaceship_path(spaceship.id) %></h5>
-          <ul>
-            <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
-            <li><strong>Brand: </strong><%= spaceship.manufacturer %></li>
-            <li><strong>Price: </strong><%= spaceship.price %></li>
-            <li><strong>Rating: </strong><%= spaceship.rating %></li>
-            <li><strong>Pickup station: </strong><%= spaceship.location %></li>
-            <li><strong>Passenger Capcity: </strong><%= spaceship.passengers %></li>
-          </ul>
-          <%= link_to "Book now!", new_spaceship_booking_path(spaceship), class: "btn btn-primary" %>
-        </div>
+<div class="index-spaceships m-2">
+  <% @spaceships.each do |spaceship| %>
+    <div class="index-card" style="width: 400px;">
+      <div class="spaceship-image">
+        <%= image_tag "#{rand(16)}.png", class: 'card-img-top'%>
       </div>
-    <% end %>
-  </div>
+      <div class="card-body">
+        <h5><%= link_to spaceship.name, spaceship_path(spaceship.id) %></h5>
+        <ul>
+          <li><strong>Type: </strong><%= spaceship.spaceship_class %></li>
+          <li><strong>Brand: </strong><%= spaceship.manufacturer %></li>
+          <li><strong>Price: </strong><%= spaceship.price %></li>
+          <li><strong>Rating: </strong><%= spaceship.rating %></li>
+          <li><strong>Pickup station: </strong><%= spaceship.location %></li>
+          <li><strong>Passenger Capcity: </strong><%= spaceship.passengers %></li>
+        </ul>
+        <%= link_to "Book now!", new_spaceship_booking_path(spaceship), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
