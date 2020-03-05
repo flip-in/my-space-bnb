@@ -1,21 +1,21 @@
-<div class="card m-5">
+<div class="card m-4">
   <div class="card__title">
-    <div class="icon">
-      <a href="<%= spaceships_path %>"><i class="fa fa-arrow-left"></i></a>
+    <div class="icon" >
+      <a id="back-btn" href="<%= spaceships_path %>"><i class="fa fa-arrow-left"></i> </a>
     </div>
   </div>
-  <div class="card__body">
-    <div class="half">
-      <div class="featured_text">
+  <div class="row card__body">
+    <div class="half col-12 col-lg-6">
+      <div class="featured_text  ">
         <h1><%= @spaceship.name %></h1>
         <p class="sub"><%= @spaceship.manufacturer %></p>
         <p class="price">$ <%=@spaceship.price%></p>
       </div>
-      <div class="image">
-        <%= image_tag "#{rand(16)}.png", class: 'card-img-top'%>
+      <div class="image mb-5">
+        <%= image_tag "#{rand(16)}.png", class: 'show-image'%>
       </div>
     </div>
-    <div class="half">
+    <div class="half col-12 col-lg-6">
       <div class="description">
         <h4 class="droid">In-built droid : <strong><%=Faker::Movies::StarWars.droid %></strong></h4>
         <h4 class="length">Length : <strong><%=@spaceship.length %></strong></h4>
@@ -24,7 +24,7 @@
         <h4 class="class">Class : <strong><%=@spaceship.spaceship_class %></strong></h4>
       </div>
       <span class="stock"><i class="fa fa-pen"></i> Available</span>
-      <div class="reviews">
+      <div class="reviews mt-5">
         <h1>Reviews for <%= @spaceship.name %></h1>
         <% @spaceship.reviews.each do |review| %>
           <p><%= review.content %></p>
@@ -45,16 +45,16 @@
           </div>
           <br>
         <% end %>
+        <div class="action col-12 col-lg-6 mt-3">
+          <button type="button"><strong>Book this spaceship</strong></button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card__footer">
-    <div class="recommend">
+  <div class="row card__footer footer">
+    <div class="recommend col-12 col-lg-6">
       <p>Recommended by</p>
       <h3>Obi-Wan Kenobi</h3>
-    </div>
-    <div class="action">
-      <button type="button"><strong>Book this spaceship</strong></button>
     </div>
   </div>
 </div>
