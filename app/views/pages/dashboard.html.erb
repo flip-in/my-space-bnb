@@ -18,49 +18,61 @@
       <h1><strong>These are the your current trips</strong></h1>
   <!-- an each do loop to take the users current bookings and create cards with their details -->
       <div class="current-trips"> <!-- for grid -->
-        <% @current_bookings.each do |booking|%>
-          <div class="card ">
-            <%= link_to booking.spaceship do %>
-              <div class="spaceship-image">
-                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
-              </div>
-            <% end %>
-            <div class="card-body">
-              <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-              <p><strong>Check-in: </strong><%= booking.start_date %></p>
-              <p><strong>Check-out: </strong><%= booking.end_date %></p>
-               <%= link_to 'Cancel Booking', cancel_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
-            </div>
+        <% if @current_bookings.empty? %>
+          <div>
+            <h2>you have no current bookings</h2>
           </div>
+        <% else %>
+          <% @current_bookings.each do |booking|%>
+            <div class="card ">
+              <%= link_to booking.spaceship do %>
+                <div class="spaceship-image">
+                  <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+                </div>
+              <% end %>
+              <div class="card-body">
+                <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+                <p><strong>Check-in: </strong><%= booking.start_date %></p>
+                <p><strong>Check-out: </strong><%= booking.end_date %></p>
+                <p><strong>Status: </strong><%= booking.status %></p>
+                 <%= link_to 'Cancel Booking', cancel_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <h1><strong>These are your past trips</strong></h1>
       <div class="past-trips">
       <!-- display grid-->
       <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
-        <% @past_bookings.each do |booking|%>
-          <div class="card">
-            <%= link_to booking.spaceship do %>
-              <div class="spaceship-image">
-              <% if booking.spaceship.photo.attached? %>
-                <%= image_tag booking.spaceship.photo.key, class: 'card-img-top'%>
-              <% else %>
-                <%= image_tag 'xwing.jpg' %>
-              <% end %>
-
-              </div>
-            <% end %>
-            <div class="card-body">
-              <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-              <p><strong>Checked-in: </strong><%= booking.start_date %></p>
-              <p><strong>Checked-out: </strong><%= booking.end_date %></p>
-              <% unless booking.review %>
-                <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
-              <% end %>
-
-            </div>
+        <% if @past_bookings.empty? %>
+          <div>
+            <h2>you have no past bookings</h2>
           </div>
-        <% end %>
+        <% else %>
+          <% @past_bookings.each do |booking|%>
+            <div class="card">
+              <%= link_to booking.spaceship do %>
+                <div class="spaceship-image">
+                <% if booking.spaceship.photo.attached? %>
+                  <%= image_tag booking.spaceship.photo.key, class: 'card-img-top'%>
+                <% else %>
+                  <%= image_tag 'xwing.jpg' %>
+                <% end %>
+                </div>
+              <% end %>
+
+              <div class="card-body">
+                <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
+                <p><strong>Checked-in: </strong><%= booking.start_date %></p>
+                <p><strong>Checked-out: </strong><%= booking.end_date %></p>
+                <% unless booking.review %>
+                  <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">

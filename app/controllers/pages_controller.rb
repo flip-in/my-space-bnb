@@ -6,8 +6,8 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @current_bookings = current_user.bookings.select { |booking| booking.end_date >= Date.today }
-    @past_bookings = current_user.bookings.select { |booking| booking.end_date < Date.today }
+    @current_bookings = current_user.bookings.select { |booking| booking.end_date >= Date.today && (booking.status == 'pending' || booking.status == 'confirmed') }
+    @past_bookings = current_user.bookings.select { |booking| booking.end_date < Date.today && (booking.status == 'pending' || booking.status == 'confirmed') }
 
   end
 end
