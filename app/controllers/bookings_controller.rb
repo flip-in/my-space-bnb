@@ -27,6 +27,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'confirmed'
     @booking.save
+    redirect_to dashboard_path
   end
 
   def reject
@@ -34,6 +35,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'rejected'
     @booking.save
+    redirect_to dashboard_path
   end
 
   def pending
@@ -41,6 +43,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'pending'
     @booking.save
+    redirect_to dashboard_path
   end
 
   def cancel
@@ -48,6 +51,7 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'canceled'
     @booking.save
+    redirect_to dashboard_path
   end
 
   def booking_params
