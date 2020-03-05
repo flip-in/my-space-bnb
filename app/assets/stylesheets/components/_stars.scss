@@ -8,3 +8,11 @@
   content: "\2605";
   color: #d2d2d2;
 }
+
+.br-selected.br-current a::after {
+  color: #EEB868;
+}
+
+.br-current-rating {
+  display: none;
+}
