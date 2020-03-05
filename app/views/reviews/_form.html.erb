@@ -3,7 +3,7 @@
     <div class="col-xs-4">
       <%= simple_form_for [booking, review] do |f|%>
       <%= f.input :content, as: :text %>
-      <%= f.input :stars, collection: (1..5).to_a, label: "Rate your spaceship" %>
+      <%= f.input :stars, collection: (1..5).to_a, label: "Rate your trip" %>
       <% if review.errors.any? %>
         <span style="color: red">Stars <%= review.errors[:stars][0] %></span>
         <br>

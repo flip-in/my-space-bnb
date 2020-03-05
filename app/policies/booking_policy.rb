@@ -1,5 +1,5 @@
 class BookingPolicy < ApplicationPolicy
-    class Scope < Scope
+  class Scope < Scope
     def resolve
       scope.all
     end
@@ -30,6 +30,22 @@ class BookingPolicy < ApplicationPolicy
   end
 
   def destroy?
+    true
+  end
+
+  def accept?
+    true
+  end
+
+  def reject?
+    true
+  end
+
+  def pending?
+    true
+  end
+
+  def cancel?
     true
   end
 end
