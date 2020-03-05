@@ -42,7 +42,12 @@
           <div class="card">
             <%= link_to booking.spaceship do %>
               <div class="spaceship-image">
-                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+              <% if booking.spaceship.photo.attached? %>
+                <%= image_tag booking.spaceship.photo, class: 'card-img-top'%>
+              <% else %>
+                <%= image_tag 'xwing.jpg' %>
+              <% end %>
+
               </div>
             <% end %>
             <div class="card-body">
@@ -64,12 +69,18 @@
           <div class="card col-3" style="width: 400px;">
             <%= link_to spaceship do %>
               <div class="spaceship-image listing-image">
-                <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+                <% if spaceship.photo.attached? %>
+                  <%= cl_image_tag spaceship.photo.key, class: 'card-img-top'%>
+                <% else %>
+                  <%= image_tag 'xwing.jpg' %>
+                <% end %>
+
               </div>
             <% end %>
             <div class="card-body">
               <p><strong>Spaceship name: </strong><%= spaceship.name %></p>
               <p><strong>Booking Status</strong><%= spaceship.name %> (placeholder)</p>
+              <%= link_to 'Edit Spaceship', edit_spaceship_path(spaceship), class: 'btn btn-primary' %>
             </div>
           </div>
           <div class="reservations-container ml-2 col-8">
