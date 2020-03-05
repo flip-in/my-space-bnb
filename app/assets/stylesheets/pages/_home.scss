@@ -4,52 +4,6 @@ body {
   background-color: rgb(239, 239, 239);
 }
 
-.banner {
-  background-size: cover;
-  background-position: center;
-  width: 100vw;
-  height: 700px;
-  box-shadow: 0px 20px 130px 2px rgba(194,192,194,1);
-}
-
-.banner-content {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-left: 20px;
-  padding-top: 60px;
-}
-
-.banner-content h1 {
-  font-size: 38px;
-  font-weight: bolder;
-  padding-left: 40px;
-}
-
-.banner-content h2 {
-  font-size: 32px;
-  padding-left: 40px;
-}
-
-#homepage-btn {
-  align-self: center;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: rgba(226, 108, 126, 1);
-  padding: 10px 20px;
-  font-size: 28px;
-  margin-top: 50px;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-}
-
-#homepage-btn:hover {
-  background-color: rgba(226, 108, 126, 0.9);
-  color: rgba(255, 255, 255, 1);
-  border: none;
-}
-
 .home-content {
   display: flex;
   flex-direction: column;
@@ -64,40 +18,11 @@ body {
   font-size: 32px;
 
 }
-.home-ships {
-  display: flex;
-  width: 70vw;
-  justify-content: space-between;
-}
 
-.home-ships p {
-  color: black;
-}
-
-.spaceships {
-  margin: 20px;
-}
-
-.card {
-  display: flex;
-  margin-bottom: 10px;
-  border: none;
-  margin-right: 3em;
-}
-
-#trips{
-  .card {
-    display: flex;
-    margin-bottom: 10px;
-    border: none;
-
-  }
-}
 
 .spaceship-image img {
   width: 100%;
   height: 300px;
-
 }
 
 .show-container {
