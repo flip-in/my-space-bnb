@@ -43,7 +43,7 @@
             <%= link_to booking.spaceship do %>
               <div class="spaceship-image">
               <% if booking.spaceship.photo.attached? %>
-                <%= image_tag booking.spaceship.photo, class: 'card-img-top'%>
+                <%= image_tag booking.spaceship.photo.key, class: 'card-img-top'%>
               <% else %>
                 <%= image_tag 'xwing.jpg' %>
               <% end %>
