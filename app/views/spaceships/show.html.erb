@@ -1,5 +1,3 @@
-
-
 <div class="card m-4">
   <div class="card__title">
     <div class="icon" >
@@ -13,7 +11,7 @@
         <p class="sub"><%= @spaceship.manufacturer %></p>
         <p class="price">$ <%=@spaceship.price%></p>
       </div>
-      <div class="image">
+      <div class="image mb-5">
         <%= image_tag "#{rand(16)}.png", class: 'show-image'%>
       </div>
     </div>
@@ -26,7 +24,7 @@
         <h4 class="class">Class : <strong><%=@spaceship.spaceship_class %></strong></h4>
       </div>
       <span class="stock"><i class="fa fa-pen"></i> Available</span>
-      <div class="reviews">
+      <div class="reviews mt-5">
         <h1>Reviews for <%= @spaceship.name %></h1>
         <% @spaceship.reviews.each do |review| %>
           <p><%= review.content %></p>
@@ -47,20 +45,17 @@
           </div>
           <br>
         <% end %>
-      </div>
+        <div class="action col-12 col-lg-6 mt-3">
+          <button type="button"><strong>Book this spaceship</strong></button>
+        </div>
       </div>
     </div>
-  <%# </div> %>
-
+  </div>
   <div class="row card__footer footer">
     <div class="recommend col-12 col-lg-6">
       <p>Recommended by</p>
       <h3>Obi-Wan Kenobi</h3>
     </div>
-    <div class="action col-12 col-lg-6 mt-3">
-      <button type="button"><strong>Book this spaceship</strong></button>
-    </div>
   </div>
 </div>
 </div>
-
