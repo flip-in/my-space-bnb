@@ -32,4 +32,16 @@ class BookingPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def accept?
+    true
+  end
+
+  def reject?
+    true
+  end
+
+  def pending?
+    true
+  end
 end

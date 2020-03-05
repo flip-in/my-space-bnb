@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   # post '/spaceships', to: 'spaceships#create'
   # get 'spaceships/:id/edit', to:
   get '/dashboard', to: 'pages#dashboard', as: :dashboard
+  post '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  post '/bookings/:id/reject', to: 'bookings#reject', as: :reject_booking
+  post '/bookings/:id/pending', to: 'bookings#pending', as: :pending_booking
 end

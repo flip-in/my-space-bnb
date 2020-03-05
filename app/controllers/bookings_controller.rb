@@ -22,6 +22,27 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  def accept
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "confirmed"
+    @booking.save
+  end
+
+  def reject
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "rejected"
+    @booking.save
+  end
+
+  def pending
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "pending"
+    @booking.save
+  end
+
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end
