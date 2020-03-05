@@ -33,7 +33,7 @@ class SpaceshipsController < ApplicationController
     @spaceship = Spaceship.find(params[:id])
     authorize @spaceship
     @spaceship.update(spaceship_params)
-    redirect_to spaceships_path(@spaceship.id)
+    redirect_to dashboard_path
   end
 
   def destroy
@@ -46,6 +46,6 @@ class SpaceshipsController < ApplicationController
 private
 
   def spaceship_params
-    params.require(:spaceship).permit(:name, :passengers, :length, :speed, :spaceship_class, :crew, :location, :manufacturer, :description, :price )
+    params.require(:spaceship).permit(:name, :passengers, :length, :speed, :spaceship_class, :crew, :location, :manufacturer, :description, :price, :photo )
   end
 end
