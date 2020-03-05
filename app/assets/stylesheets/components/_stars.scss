@@ -4,13 +4,21 @@
   }
 }
 
+.br-widget a {
+  font-size: 23px;
+
+  &:hover {
+    color: #EEB868 !important;  
+  }
+}
+
 .br-theme-css-stars .br-widget a:after {
   content: "\2605";
   color: #d2d2d2;
 }
 
 .br-selected, .br-active, .br-current::after {
-  color: #EEB868;
+  color: #EEB868 !important;
 }
 
 .br-current-rating {
