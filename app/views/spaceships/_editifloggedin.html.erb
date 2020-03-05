@@ -1,0 +1,12 @@
+    <% if policy(@spaceship).edit? %>
+      <div class="edit">
+        <%= link_to "Edit Spaceship", edit_spaceship_path %>
+      </div>
+    <% end %>
+    <% if policy(@spaceship).destroy? %>
+      <div class='delete'>
+        <%= link_to spaceship_path(@spaceship.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+          <i class="far fa-trash-alt" style="font-size: 14px"></i>
+        <% end %>
+      </div>
+    <% end %>
