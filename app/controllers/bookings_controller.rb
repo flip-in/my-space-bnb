@@ -25,28 +25,28 @@ class BookingsController < ApplicationController
   def accept
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.status = "confirmed"
+    @booking.status = 'confirmed'
     @booking.save
   end
 
   def reject
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.status = "rejected"
+    @booking.status = 'rejected'
     @booking.save
   end
 
   def pending
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.status = "pending"
+    @booking.status = 'pending'
     @booking.save
   end
 
   def cancel
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.status = "canceled"
+    @booking.status = 'canceled'
     @booking.save
   end
 
