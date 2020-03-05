@@ -44,4 +44,8 @@ class BookingPolicy < ApplicationPolicy
   def pending?
     true
   end
+
+  def cancel?
+    true
+  end
 end

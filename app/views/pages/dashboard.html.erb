@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Welcome <%= current_user.email %></h1>
-  
+
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="trips-tab" data-toggle="tab" href="#trips" role="tab" aria-controls="trips" aria-selected="true">Trips</a>
@@ -29,7 +29,7 @@
               <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
               <p><strong>Check-in: </strong><%= booking.start_date %></p>
               <p><strong>Check-out: </strong><%= booking.end_date %></p>
-              <div class="btn btn-primary">Cancel booking?</div>
+               <%= link_to 'Cancel Booking', cancel_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
             </div>
           </div>
         <% end %>
@@ -57,7 +57,7 @@
               <% unless booking.review %>
                 <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
               <% end %>
-    
+
             </div>
           </div>
         <% end %>
@@ -93,6 +93,6 @@
 
     <%# <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> %>
   </div>
-  
-  
+
+
 </div>

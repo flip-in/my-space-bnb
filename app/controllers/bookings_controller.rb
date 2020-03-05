@@ -43,6 +43,13 @@ class BookingsController < ApplicationController
     @booking.save
   end
 
+  def cancel
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.status = "canceled"
+    @booking.save
+  end
+
   def booking_params
     params.require(:booking).permit(:start_date, :end_date)
   end

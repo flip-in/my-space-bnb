@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   post '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
   post '/bookings/:id/reject', to: 'bookings#reject', as: :reject_booking
   post '/bookings/:id/pending', to: 'bookings#pending', as: :pending_booking
+  post '/bookings/:id/cancel', to: 'bookings#cancel', as: :cancel_booking
 end
