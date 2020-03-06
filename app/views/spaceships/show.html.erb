@@ -1,21 +1,11 @@
-<div class="show-card m-4">
-  <div class="card__title">
-    <div class="icon" >
-      <a id="back-btn" href="<%= spaceships_path %>"><i class="fa fa-arrow-left"></i> </a>
-    </div>
-  </div>
-  <div class="row card__body">
-    <div class="half col-12 col-lg-6">
-      <div class="featured_text  ">
+<div class="container show-card-container show-card pt-2 mt-5 pb-2">
+  <div class="row py-5 ">
+    <div class="col-md-6">
+      <div class="featured_text">
         <h1><%= @spaceship.name %></h1>
         <p class="sub"><%= @spaceship.manufacturer %></p>
-        <p class="price">$ <%=@spaceship.price%></p>
+        <p class="price mb-5">$ <%=@spaceship.price%></p>
       </div>
-      <div class="image mb-5">
-        <%= cl_image_tag @spaceship.photo.key, class: 'card-img-top '%>
-      </div>
-    </div>
-    <div class="half col-12 col-lg-6">
       <div class="description">
         <h4 class="droid">In-built droid : <strong><%=Faker::Movies::StarWars.droid %></strong></h4>
         <h4 class="length">Length : <strong><%=@spaceship.length %></strong></h4>
@@ -23,40 +13,63 @@
         <h4 class="droid">Location : <strong><%=@spaceship.location %></strong></h4>
         <h4 class="class">Class : <strong><%=@spaceship.spaceship_class %></strong></h4>
       </div>
-      <span class="available"><i class="fa fa-pen"></i> Available</span>
-      <div class="reviews mt-4">
-        <h1><light>Reviews for </light><%= @spaceship.name %> :</h1>
-        <% @spaceship.reviews.each do |review| %>
-          <%= random_avatar( {height: 40, width: 40})%>
-          <span><strong><%= review.user.name %></strong></span><div class="stars-container">
-            <% i = 1 %>
-            <% j = 0 %>
-            <% until j == 5  %>
-              <ul class="stars ">
-                <% if i <= review.stars %>
-                  <li><i class="fas fa-star"></i></li>
-                <% else %>
-                  <li> <i class="far fa-star"></i></li>
-                <% end %>
-                <% i += 1 %>
-                <% j += 1 %>
-              <% end %>
-            </ul>
+    </div>
+    <div class="col-md-6">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="<%= cl_image_path @spaceship.photo.key %>" alt="First slide">
           </div>
-          <p><%= review.content %></p>
-          <br>
-        <% end %>
-        <div class="action col-12 col-lg-6 mt-3">
-          <button type="button"><%= link_to "Book now!", new_spaceship_booking_path(@spaceship)%></button>
-          
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="action mt-5">
+        <button type="button"><%= link_to "Book now!", new_spaceship_booking_path(@spaceship)%></button>
       </div>
     </div>
   </div>
-  <div class="row card__footer footer">
+  <div class="col card__footer footer mt-4 pt-5">
     <div class="recommend col-12 col-lg-6">
       <p>Recommended by</p>
       <h3>Obi-Wan Kenobi</h3>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row show-card">
+    <div class="reviews mt-4">
+      <h1><light>Reviews for </light><%= @spaceship.name %> :</h1>
+      <% @spaceship.reviews.each do |review| %>
+        <%= random_avatar( {height: 40, width: 40})%>
+        <span><strong><%= review.user.name %></strong></span>
+        <div class="stars-container">
+          <% i = 1 %>
+          <% j = 0 %>
+          <% until j == 5  %>
+            <ul class="stars ">
+              <% if i <= review.stars %>
+                <li><i class="fas fa-star"></i></li>
+              <% else %>
+                <li> <i class="far fa-star"></i></li>
+              <% end %>
+              <% i += 1 %>
+              <% j += 1 %>
+            <% end %>
+          </ul>
+        </div>
+        <p><%= review.content %></p>
+        <br>
+      <% end %>
+      <div class="action mt-3">
+        <button type="button"><%= link_to "Book now!", new_spaceship_booking_path(@spaceship)%></button>
+      </div>
     </div>
   </div>
 </div>
