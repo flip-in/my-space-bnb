@@ -39,6 +39,10 @@ puts 'Creating spaceships...'
       price: rand(150..2_500),
       rating: rand(1..5)
     )
+    path = File.expand_path("./db/images/#{rand(0..18)}.png")
+    file = File.open(path)
+    spaceship.photo.attach(io: file, filename:  "#{spaceship['name']}.png" )
+
     user_email = Faker::Movies::StarWars.character.gsub(' ', '')
     spaceship.user = User.all.sample
     spaceship.save
