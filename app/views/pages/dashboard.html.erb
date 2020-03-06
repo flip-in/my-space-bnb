@@ -18,7 +18,7 @@
   <!-- an each do loop to take the users current bookings and create cards with their details -->
       <% if @current_bookings.empty? %>
         <div class="empty-current">
-          <h1>you have no current bookings</h1>
+          <h1>You have no current bookings. <%= link_to "Book a Trip!", spaceships_path %></h1>
         </div>
       <% else %>
         <div class="current-trips"> <!-- for grid -->
@@ -46,7 +46,7 @@
       <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
         <% if @past_bookings.empty? %>
           <div>
-            <h2>you have no past bookings</h2>
+            <h2>you have no past bookings</h2> 
           </div>
         <% else %>
           <% @past_bookings.each do |booking|%>
