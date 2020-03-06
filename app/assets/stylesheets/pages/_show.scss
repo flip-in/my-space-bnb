@@ -47,24 +47,22 @@ main{
       }
     }
 
-#back-btn {
-  flex: 1 0 10px;
-  transition: 200ms;
-  background-color: #115dd8;
-  color: white;
-  display: block;
-  height: 100%;
-  line-height: 40px;
-  text-decoration: none;
-  width: 100%;
-  text-align: center;
-}
-#back-btn:hover {
-  background-color: #252525;
-}
-}
-
-
+    #back-btn {
+      flex: 1 0 10px;
+      transition: 200ms;
+      background-color: #115dd8;
+      color: white;
+      display: block;
+      height: 100%;
+      line-height: 40px;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
+    }
+    #back-btn:hover {
+      background-color: #252525;
+    }
+  }
   
   .card__body{
     // padding: 0 40px;
