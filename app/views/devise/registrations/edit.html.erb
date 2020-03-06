@@ -25,11 +25,9 @@
       <%= f.input :avatar, label:"Upload your profile image", as: :file %>
       Your Pofile Pic: 
       <br>
-      
-      <%= cl_image_tag(current_user.avatar.key, :height=>200, :crop=>"scale") %>
-      <!--
-      <div class="avatar-preview" style="background-image:url(<%=cl_image_path current_user.avatar.key %>">
-      </div> -->
+    
+      <%= avatar_for(current_user, {height: 200, crop: "scale"}) %>
+  
 
     </div>
   
