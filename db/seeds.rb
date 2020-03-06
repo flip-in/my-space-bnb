@@ -77,7 +77,7 @@ spaceships.each do |spaceship|
     rand(1..2).times do
       review = Review.new(
         content: Faker::Restaurant.review,
-        stars: rand(5),
+        stars: rand(3..5),
         booking: booking,
         user: User.all.sample
       )
