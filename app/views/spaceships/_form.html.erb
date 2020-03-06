@@ -1,21 +1,17 @@
     <div class="col-xs-4">
       <%= simple_form_for [spaceship] do |f| %>
         <div class="container">
-          <div class="row justify-content-around">
             <%= f.input :name %>
-            <%= f.input :spaceship_class %>
-            <%= f.input :location %>
             <%= f.input :description %>
+            <%= f.input :location %>
+            <%= f.input :spaceship_class %>
             <%= f.input :speed %>
             <%= f.input :length %>
-            <%= f.input :price %>
             <%= f.input :passengers %>
             <%= f.input :crew %>
-            <div class="text-align-left">
             <%= f.input :manufacturer %>
+            <%= f.input :price %>
             <%= f.input :photo, as: :file %>
-            </div>
-          </div>
         </div>
       </div>
         <% if spaceship.errors.any? %>
@@ -24,8 +20,8 @@
         <% end %>
           <div class="d-flex flex-column">
             <%= f.submit %>
-            <%= link_to "Back to dashboard", dashboard_path, class: "btn btn-primary my-3"  %>
           </div>
+            <%= link_to "Back to dashboard", dashboard_path, class: "btn btn-primary my-3"  %>
       </div>
     <% end %>
 

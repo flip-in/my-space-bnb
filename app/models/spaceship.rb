@@ -4,7 +4,7 @@ class Spaceship < ApplicationRecord
   has_one_attached :photo
   belongs_to :user
 
-  validates :name, :passengers, :length, :speed, :spaceship_class, :crew, :location, :manufacturer, :description, :price, presence: true
+  validates :name, :length,  :location, :manufacturer, :description, :price, presence: true
   validates :price, numericality: true
 
   def unavailable_dates

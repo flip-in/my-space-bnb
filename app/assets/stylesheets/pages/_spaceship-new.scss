@@ -1,0 +1,31 @@
+.new-card{
+    min-height: 500px;
+    transition: 200ms;
+    background: #fff;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.09) !important;
+    border-radius: 8px;
+    border-color: #f9f9f9 !important;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.new-card h1 {
+    padding: 2rem;
+}
+
+.new-button {
+        align-self: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: rgba(226, 108, 126, 1);
+        padding: 10px 20px;
+        font-size: 28px;
+        margin-top: 50px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+      }
+      
+.new-button:hover {
+    background-color: rgba(226, 108, 126, 0.9);
+    color: rgba(255, 255, 255, 1);
+    border: none;
+  }
