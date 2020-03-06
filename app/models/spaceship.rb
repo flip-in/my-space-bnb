@@ -7,4 +7,10 @@ class Spaceship < ApplicationRecord
   validates :name, :passengers, :length, :speed, :spaceship_class, :crew, :location, :manufacturer, :description, :price, presence: true
   validates :price, numericality: true
 
+  def unavailable_dates
+    bookings.pluck(:start_date, :end_date).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
+  
 end

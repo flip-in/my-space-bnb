@@ -11,7 +11,16 @@
 							</p>
 						</div>
 					</div>
-          <%= render 'form', spaceship: @spaceship, booking: @booking %>
+          <%#= render 'form', spaceship: @spaceship, booking: @booking %>
+            <div id='spaceship-booking-dates' data-unavailable="<%= @spaceship.unavailable_dates.to_json %>">
+              <% if current_user.id != @spaceship.user_id  %>
+                <%= simple_form_for([@spaceship, @booking]) do |f| %>
+                  <%= f.input :start_date, as: :string, type: :text %>
+                  <%= f.input :end_date, as: :string, type: :text %>
+                  <%= f.submit "Book", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
 					</div>
 				</div>
 			</div>
