@@ -1,5 +1,25 @@
 .avatar-preview {
-  background-position: center; 
-  height: 100px; 
+  background-position: center;
+  height: 100px;
   width: 100px;
 }
+
+.devise-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-form {
+  width: 300px;
+  max-width: 400px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.09) !important;
+  border-radius: 8px;
+  border-color: #f9f9f9 !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+  text-align: center;
+  }
+
+  a {
+      color: #6607bd;
+  }
