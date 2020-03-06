@@ -1,4 +1,4 @@
-<div class="card m-4">
+<div class="show-card m-4">
   <div class="card__title">
     <div class="icon" >
       <a id="back-btn" href="<%= spaceships_path %>"><i class="fa fa-arrow-left"></i> </a>
@@ -23,9 +23,9 @@
         <h4 class="droid">Location : <strong><%=@spaceship.location %></strong></h4>
         <h4 class="class">Class : <strong><%=@spaceship.spaceship_class %></strong></h4>
       </div>
-      <span class="stock"><i class="fa fa-pen"></i> Available</span>
-      <div class="reviews mt-5">
-        <h1>Reviews for <%= @spaceship.name %></h1>
+      <span class="available"><i class="fa fa-pen"></i> Available</span>
+      <div class="reviews mt-4">
+        <h1><light>Reviews for </light><%= @spaceship.name %> :</h1>
         <% @spaceship.reviews.each do |review| %>
           <span><strong><%= review.user.name %></strong></span><div class="stars-container">
             <% i = 1 %>
@@ -46,7 +46,8 @@
           <br>
         <% end %>
         <div class="action col-12 col-lg-6 mt-3">
-          <button type="button"><strong>Book this spaceship</strong></button>
+          <button type="button"><%= link_to "Book now!", new_spaceship_booking_path(@spaceship)%></button>
+          
         </div>
       </div>
     </div>
@@ -55,10 +56,6 @@
     <div class="recommend col-12 col-lg-6">
       <p>Recommended by</p>
       <h3>Obi-Wan Kenobi</h3>
-    </div>
-
-    <div class="action">
-      <%= link_to "Book now!", new_spaceship_booking_path(@spaceship), class: "btn btn-primary" %>
     </div>
   </div>
 </div>

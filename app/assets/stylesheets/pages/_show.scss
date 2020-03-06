@@ -6,7 +6,7 @@ main{
   margin: 5% auto;
 }
 
-.card{
+.show-card{
   padding: 10px;
   box-shadow: 0 6px 6px rgba(#000, 0.3);
   transition: 200ms;
@@ -29,8 +29,6 @@ main{
       text-transform: uppercase;
     }
 
- 
-    
     .icon{
       flex: 1 0 10px;
       background: #115dd8;
@@ -132,7 +130,7 @@ main{
       }
     }
     
-    span.stock{
+    span.available{
       font-family: "Montserrat", sans-serif;
       font-weight: 600;
       color: #a1cc16;
@@ -152,7 +150,6 @@ main{
           }
         }
       }
-      
       > span{
         font-family: "Open Sans", sans-serif;
         font-size: 14px;
@@ -214,13 +211,15 @@ main{
     border-radius: 200px;
     color: #fff;
     background: #115dd8;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Starjedi", sans-serif;
     font-size: 16px;
     transition: 200ms;
+    text-decoration: none;
     
     &:hover{
       background: #fff;
       color: #115dd8;
+      text-decoration: none;
     }
   }
 }
