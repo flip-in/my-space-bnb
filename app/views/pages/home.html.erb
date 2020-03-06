@@ -1,20 +1,28 @@
 <div class="banner" style="background-image: linear-gradient(rgba(20, 4, 22, 0.8), rgba(20, 4, 22, 0.7)), url('<%= asset_path "7035.jpg" %>')">
   <div class="banner-content">
-    <%= image_tag 'MyspaceBnbLogo.png', style:"width: 1000px;" %>
+    <%= image_tag 'MyspaceBnbLogo.png' %>
     <h1>Have some intergalactic travel coming up?</h1>
     <h2>We've got you covered.</h2>
-    <%= link_to spaceships_path, class:"btn btn-primary", id:"homepage-btn" do %>
+    <%= link_to spaceships_path, class: "btn btn-primary homepage-btn" do %>
       Book your spaceship now <i class="fas fa-rocket"></i>
     <% end %>
   </div>
 </div>
+
+
 <div class="home-content">
   <div class="home-header">
     <h1>Rent the spaceship of your dreams</h1>
   </div>
-  <div class="home-ships">
-    <% @spaceships.each do |spaceship| %>
-      <%= render 'spaceships/small-card', spaceship: spaceship %>
-    <% end %>
-  </div>
 </div>
+
+
+  <div class="container">
+    <div class="row">
+      <% @spaceships.each do |spaceship| %>
+        <div class="col-md-3 small-card-col">
+          <%= render 'spaceships/small-card', spaceship: spaceship %>
+        </div>
+      <% end %>
+    </div>
+  </div>

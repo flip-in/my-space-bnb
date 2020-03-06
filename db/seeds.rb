@@ -7,7 +7,6 @@ Booking.destroy_all
 Spaceship.destroy_all
 User.destroy_all
 
-
 puts 'Creating users...'
 
 User.create(name: "Luke", email: 'test@test.com', password: 'password')
@@ -42,18 +41,16 @@ puts 'Creating spaceships...'
     )
     path = File.expand_path("./db/images/#{rand(0..18)}.png")
     file = File.open(path)
-    spaceship.photo.attach(io: file, filename:  "#{spaceship['name']}.png" )
+    spaceship.photo.attach(io: file, filename: "#{spaceship['name']}.png", content_type: 'image/png' )
 
     user_email = Faker::Movies::StarWars.character.gsub(' ', '')
     spaceship.user = User.all.sample
     spaceship.save
+  end
 end
-
 
 puts 'Creating bookings and reviews...'
 
-# every spaceship has 2-3 bookings
-#every booking has 3-5 reivews
 spaceships = Spaceship.all
 
 spaceships.each do |spaceship|
@@ -107,6 +104,10 @@ puts 'creating seeds for test account...'
       rating: rand(1..5),
       user: User.first
     )
+    path = File.expand_path("./db/images/#{rand(0..18)}.png")
+    file = File.open(path)
+    spaceship.photo.attach(io: file, filename: "#{spaceship['name']}.png", content_type: 'image/png' )
+
     spaceship.save
   end
 end

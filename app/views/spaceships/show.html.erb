@@ -12,7 +12,7 @@
         <p class="price">$ <%=@spaceship.price%></p>
       </div>
       <div class="image mb-5">
-        <%= image_tag "#{rand(16)}.png", class: 'show-image'%>
+        <%= cl_image_tag @spaceship.photo.key, class: 'card-img-top '%>
       </div>
     </div>
     <div class="half col-12 col-lg-6">
