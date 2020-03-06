@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.main-container {
+  min-height: calc(100vh - 136px)
+}
+
 
 .home-content {
   display: flex;
