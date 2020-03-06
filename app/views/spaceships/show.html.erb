@@ -27,8 +27,7 @@
       <div class="reviews mt-5">
         <h1>Reviews for <%= @spaceship.name %></h1>
         <% @spaceship.reviews.each do |review| %>
-          <p><%= review.content %></p>
-          <div class="stars-container">
+          <span><strong><%= review.user.name %></strong></span><div class="stars-container">
             <% i = 1 %>
             <% j = 0 %>
             <% until j == 5  %>
@@ -43,6 +42,7 @@
               <% end %>
             </ul>
           </div>
+          <p><%= review.content %></p>
           <br>
         <% end %>
         <div class="action col-12 col-lg-6 mt-3">
@@ -55,6 +55,10 @@
     <div class="recommend col-12 col-lg-6">
       <p>Recommended by</p>
       <h3>Obi-Wan Kenobi</h3>
+    </div>
+
+    <div class="action">
+      <%= link_to "Book now!", new_spaceship_booking_path(@spaceship), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
