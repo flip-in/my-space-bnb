@@ -10,10 +10,11 @@ User.destroy_all
 
 puts 'Creating users...'
 
-User.create(email: 'test@test.com', password: 'password' )
+User.create(name: "Luke", email: 'test@test.com', password: 'password')
 
 50.times do
-  User.create(email: Faker::Internet.email, password: "password")
+  name = Faker::Movies::StarWars.character
+  User.create(name: name, email: "#{name.gsub(' ', '')}@gmail.com", password: "password")
 end
 
 puts 'Creating spaceships...'
@@ -39,7 +40,7 @@ puts 'Creating spaceships...'
       price: rand(150..2_500),
       rating: rand(1..5)
     )
-    user_email = Faker::Movies::StarWars.character.gsub(' ', '')
+    user_email = "#{Faker::Movies::StarWars.character.gsub(' ', '')}@gmail.com"
     spaceship.user = User.all.sample
     spaceship.save
   end
@@ -47,21 +48,35 @@ end
 
 
 puts 'Creating bookings and reviews...'
-20.times do
-  start = Date.today + rand(14)
-  new_review = Review.new(content: Faker::Restaurant.review , stars: rand(5))
-  first_booking = Booking.new(start_date: start, end_date: start + 7, status: 'confirmed')
-  spaceship = Spaceship.all.sample
-  booking_user = User.find(spaceship.user.id + 1)
-  if booking_user.nil?
-    booking_user = User.find(spaceship.user.id - 1)
+
+# every spaceship has 2-3 bookings
+#every booking has 3-5 reivews
+spaceships = Spaceship.all
+
+spaceships.each do |spaceship|
+  rand(3..5).times do
+    start = Date.today + rand(14)
+    booking = Booking.new(
+      start_date: start,
+      end_date: start + 7,
+      status: 'confirmed',
+      user: User.all.sample,
+      spaceship: spaceship
+    )
+  booking.save
   end
-  first_booking.user = booking_user
-  first_booking.spaceship = spaceship
-  first_booking.save!
-  new_review.user = booking_user
-  new_review.booking = first_booking
-  new_review.save!
+
+  spaceship.bookings.each do |booking|
+    rand(1..2).times do
+      review = Review.new(
+        content: Faker::Restaurant.review,
+        stars: rand(5),
+        booking: booking,
+        user: User.all.sample
+      )
+      review.save
+    end
+  end
 end
 
 puts 'creating seeds for test account...'
