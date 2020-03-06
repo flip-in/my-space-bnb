@@ -1,4 +1,5 @@
-<div class="container">
+<div class="header">
+  <div class="container">
 
 		<div class="profile">
 
@@ -8,9 +9,9 @@
 
 			<div class="profile-user-settings">
 
-				<h1 class="profile-user-name">janedoe_</h1>
+				<h1 class="profile-user-name"><%= @user.name %></h1>
         <% if @user == current_user %>
-				  link_to
+          <%= link_to "Edit your Profile", edit_user_registration_path, class: "btn btn-primary" %>
         <% end %>
 
 				<button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
@@ -20,7 +21,7 @@
 			<div class="profile-stats">
 
 				<ul>
-					<li><span class="profile-stat-count">164</span> posts</li>
+					<li><span class="profile-stat-count"><%= @user.spaceships.count %></span> listings</li>
 					<li><span class="profile-stat-count">188</span> followers</li>
 					<li><span class="profile-stat-count">206</span> following</li>
 				</ul>
@@ -28,13 +29,17 @@
 			</div>
 
 			<div class="profile-bio">
-
-				<p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+        <% if @user.bio %>
+				  <p> <%= @user.bio %> 📷✈️🏕️</p>
+        <% else %>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, perferendis esse sit fuga vero ex corrupti. 
+          Quam aliquid vitae accusantium delectus, id perferendis adipisci et earum perspiciatis neque. Repellendus, officiis.</p>
+        <% end %>
 
 			</div>
 
 		</div>
 		<!-- End of profile section -->
-
 	</div>
+</div>
 	<!-- End of container -->
