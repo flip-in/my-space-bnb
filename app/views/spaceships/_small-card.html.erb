@@ -1,0 +1,23 @@
+
+<div class="card small-card" style="width: 100%;">
+  <%= cl_image_tag spaceship.photo.key%>
+  <div class="card-body">
+    <div class="title-container">
+      <h5><%= link_to spaceship.name.truncate(20), spaceship_path(spaceship.id) %></h5>
+    </div>
+    <p class="spaceship-type"><%= spaceship.spaceship_class %></p>
+    <div class="card-info">
+
+      <p><i class="fas fa-dollar-sign"></i><%= spaceship.price %></p>
+      <p>
+        <% spaceship.rating.times do %>
+          <i class="fas fa-star"></i>
+        <% end %>
+        <% (5 - spaceship.rating).times do %>
+           <i class="far fa-star"></i>
+        <% end %>
+      </p>
+    </div>
+    <%= link_to "Book now!", new_spaceship_booking_path(spaceship), class: "btn btn-primary spaceship-booking-link" %>
+  </div>
+</div>

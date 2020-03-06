@@ -26,7 +26,7 @@
             <div class="card ">
               <%= link_to booking.spaceship do %>
                 <div class="spaceship-image">
-                  <%= image_tag 'xwing.jpg', class: 'card-img-top'%>
+                  <%= cl_image_tag booking.spaceship.photo.key, class: 'card-img-top '%>
                 </div>
               <% end %>
               <div class="card-body">
