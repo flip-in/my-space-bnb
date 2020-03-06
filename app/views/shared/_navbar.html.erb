@@ -21,9 +21,11 @@
         <li class="nav-item">
           <%= link_to "List a Spaceship", new_spaceship_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
+        <!-- Messages to maybe be implemented later-->
+        <%# <li class="nav-item"> %>
+          <%#= link_to "Messages", "#", class: "nav-link" %>
+        <%# </li> %>
+        <!-- -->
         <li class="nav-item dropdown">
           <div class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= avatar_for_navbar(current_user)%>
