@@ -14,92 +14,83 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="trips" role="tabpanel" aria-labelledby="trips-tab">
-      <h1><strong>These are the your current trips</strong></h1>
-  <!-- an each do loop to take the users current bookings and create cards with their details -->
+      <div class="bookingheader">
+        <h1>These are the your current trips</h1>
+      </div>
+      <!-- an each do loop to take the users current bookings and create cards with their details -->
       <% if @current_bookings.empty? %>
-        <div class="empty-current">
-          <h1>You have no current bookings. <%= link_to "Book a Trip!", spaceships_path %></h1>
-        </div>
+      <div class="empty-current">
+        <h1>You have no current bookings. <%= link_to "Book a Trip!", spaceships_path %></h1>
+      </div>
       <% else %>
-        <div class="current-trips"> <!-- for grid -->
-          <% @current_bookings.each do |booking|%>
-            <div class="card ">
-              <%= link_to booking.spaceship do %>
-                <div class="spaceship-image">
-                  <%= cl_image_tag booking.spaceship.photo.key, class: 'card-img-top '%>
-                </div>
-              <% end %>
-              <div class="card-body">
-                <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-                <p><strong>Check-in: </strong><%= booking.start_date %></p>
-                <p><strong>Check-out: </strong><%= booking.end_date %></p>
-                <p><strong>Status: </strong><%= booking.status %></p>
-                 <%= link_to 'Cancel Booking', cancel_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
-              </div>
-            </div>
+      <div class="current-trips"> <!-- for grid -->
+        <% @current_bookings.each do |booking|%>
+        <div class="col-md-3 small-card-col">
+          <%= render 'small-card-bookings', booking: booking %>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+      <div class="bookingheader">
+        <h1>These are your past trips</h1>
+      </div>
+      <div class="past-trips">
+        <!-- display grid-->
+        <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
+        <% if @past_bookings.empty? %>
+        <div>
+          <h2>you have no past bookings</h2>
+        </div>
+        <% else %>
+        <% @past_bookings.each do |booking|%>
+        <div class="card">
+          <%= link_to booking.spaceship do %>
+          <div class="col-md-3 small-card-col">
+            <%= render 'small-card-bookings', booking: booking %>
+          </div>
           <% end %>
         </div>
-      <% end %>
-      <h1><strong>These are your past trips</strong></h1>
-      <div class="past-trips">
-      <!-- display grid-->
-      <!-- an each do loop to take the users PAST bookings and create cards with their details, where they can create a review -->
-        <% if @past_bookings.empty? %>
-          <div>
-            <h2>you have no past bookings</h2> 
-          </div>
-        <% else %>
-          <% @past_bookings.each do |booking|%>
-            <div class="card">
-              <%= link_to booking.spaceship do %>
-                <div class="spaceship-image">
-                <% if booking.spaceship.photo.attached? %>
-                  <%= image_tag booking.spaceship.photo.key, class: 'card-img-top'%>
-                <% else %>
-                  <%= image_tag 'xwing.jpg' %>
-                <% end %>
-                </div>
-              <% end %>
-              <div class="card-body">
-                <p><strong>Spaceship booked: </strong><%= booking.spaceship.name %></p>
-                <p><strong>Checked-in: </strong><%= booking.start_date %></p>
-                <p><strong>Checked-out: </strong><%= booking.end_date %></p>
-                <% unless booking.review %>
-                  <%= link_to "Write a Review!", new_booking_review_path(booking), class: "btn btn-primary" %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-      <% end %>
+        <% end %>
+        <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
       <% current_user.spaceships.each do |spaceship| %>
-        <div class='listing-container d-flex w-100 my-3'>
-          <div class="card col-3" style="width: 400px;">
-            <%= link_to spaceship do %>
-              <div class="spaceship-image listing-image">
-                <% if spaceship.photo.attached? %>
-                  <%= cl_image_tag spaceship.photo.key, class: 'card-img-top'%>
-                <% else %>
-                  <%= image_tag 'xwing.jpg' %>
-                <% end %>
-              </div>
-            <% end %>
+      <div class="row py-3">
+        <div class="col-md-3">
+
+          <div class="card small-card" style="width: 100%;">
+            <%= cl_image_tag spaceship.photo.key%>
             <div class="card-body">
-              <p><strong>Spaceship name: </strong><%= spaceship.name %></p>
-              <p><strong>Booking Status</strong><%= spaceship.name %> (placeholder)</p>
-              <%= link_to 'Edit Spaceship', edit_spaceship_path(spaceship), class: 'btn btn-primary' %>
+              <div class="title-container">
+                <h5><%= link_to spaceship.name.truncate(20), spaceship_path(spaceship.id) %></h5>
+              </div>
+              <p class="spaceship-type"><%= spaceship.spaceship_class %></p>
+              <div class="card-info">
+
+                <p><i class="fas fa-dollar-sign"></i><%= spaceship.price %></p>
+                <p>
+                  <% spaceship.rating.times do %>
+                  <i class="fas fa-star"></i>
+                  <% end %>
+                  <% (5 - spaceship.rating).times do %>
+                  <i class="far fa-star"></i>
+                  <% end %>
+                </p>
+              </div>
+              <%= link_to 'Edit Spaceship', edit_spaceship_path(spaceship), class: 'btn btn-primary spaceship-booking-link' %>
             </div>
           </div>
-          <div class="reservations-container ml-2 col-8">
-            <%= render "dropdown", spaceship: spaceship %>
-          </div>
         </div>
+        <div class="col-md-9">
+          <%= render 'dropdown', spaceship:spaceship %>
+        </div>
+      </div>
       <% end %>
     </div>
     <!-- Third tab maybe not needed -->
     <%# <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> %>
   </div>
 </div>
+
 

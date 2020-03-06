@@ -1,0 +1,21 @@
+<div class="card small-card">
+  <%= cl_image_tag booking.spaceship.photo.key%>
+  <div class="card-body">
+    <div class="title-container">
+      <h5><%= link_to booking.spaceship.name.truncate(20) %></h5>
+    </div>
+    <p class="spaceship-type"><%= booking.spaceship.spaceship_class %></p>
+    <div class="card-info">
+      <div class="checkinout">
+        <p><strong>Check-in: </strong> <br> <%= booking.start_date %>
+          <br><strong>Check-out: </strong>
+          <br> <%= booking.end_date %>
+        </p>
+      </div>
+      <div class="b-status">
+      <p ><strong>Status: </strong><br><%= booking.status %></p>
+      </div>
+    </div>
+    <%= link_to 'Cancel Booking', cancel_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+  </div>
+</div>

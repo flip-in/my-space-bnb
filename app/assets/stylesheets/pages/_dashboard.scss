@@ -7,12 +7,21 @@
   border: solid 3px rgba(210, 210, 210, 0.3);
   border-radius: 8px;
   padding: 10px;
-  background-color: white;
+  background-color: #f3f3f3;
   box-shadow: 10px 8px 62px 0px rgba(184, 170, 184, 0.61);
+
+  nav-link {
+    font-size: 20px;
+  }
 }
 
 .container-all {
   padding: 50px 100px;
+
+  h1 {
+    font-weight: bold;
+    color: rgb(84, 90, 96);
+  }
 }
 
 #spaceships {
@@ -32,15 +41,15 @@
 }
 
 .current-trips {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  display: flex;
 }
 
 .past-trips {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  display: flex;
+  h2{
+    font-size: 16px;
+    margin-left: 50px;
+  }
 }
 
 #booking-container {
@@ -53,20 +62,46 @@
   box-shadow: 4px 6px 5px 0px rgba(217,217,217,0.4);
 }
 
+.card-info p{
+  font-size: 11px;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+.checkinout {
+  padding: 5px 0px;
+}
+
+.b-status {
+  font-weight: bold;
+}
+
 .empty-current {
   padding: 20px;
 }
 
 .empty-current h1 {
-  font-size: 28px;
+  color: rgb(125, 126, 124);
+  font-size: 14px;
+  right-margin: 50px;
 }
 
 #trips {
-  background-color: white;
+  background-color: #f3f3f3;
   padding: 20px;
 }
 
 #listings {
-  background-color: white;
+  background-color: #f3f3f3;
   justify-content: center;
 }
+
+.bookingheader {
+  font-weight: bold;
+  padding: 20px;
+
+  h1 {
+    font-size: 18px;
+  }
+}
+
