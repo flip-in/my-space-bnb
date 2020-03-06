@@ -9,7 +9,7 @@ User.destroy_all
 
 puts 'Creating users...'
 
-User.create(name: "Luke", email: 'test@test.com', password: 'password')
+User.create(name: "Luke Skywalker", email: 'test@test.com', password: 'password', bio: "I'm a Force-sensitive human male, was a legendary Jedi Master who fought in the Galactic Civil War during the reign of the Galactic Empire. ... I'm the son of Jedi Knight Anakin Skywalker and Senator Padmé Amidala, I was born along with my twin sister Leia in 19 BBY.")
 
 50.times do
   name = Faker::Movies::StarWars.character
@@ -50,6 +50,13 @@ puts 'Creating spaceships...'
 end
 
 puts 'Creating bookings and reviews...'
+first_spaceship = Spaceship.first
+first_booking = Booking.new(start_date: Date.today - 100,
+                            end_date: Date.today - 80,
+                            status: "confirmed",
+                            user: User.first, 
+                            spaceship: first_spaceship)
+first_booking.save
 
 spaceships = Spaceship.all
 
