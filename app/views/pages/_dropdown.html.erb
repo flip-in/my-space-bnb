@@ -27,31 +27,32 @@
     <h3>Pending Bookings</h3>
     <% spaceship.bookings.each do |booking| %>
     <% if booking.status == 'pending' %>
-      <div class="container" id="booking-container">
-        <h3><strong>Email: </strong><%= booking.user.email %></h3>
-        <div>
-          <p><strong>Check-in: </strong> <%= booking.start_date %></p>
-          <p><strong>Checkout: </strong><%= booking.end_date %></p>
-          <h4><strong>Booking status: </strong><%= booking.status %></h4>
-        </div>
-        <div>
-          <% if booking.status == 'pending' %>
-            <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
-          <% elsif booking.status == 'confirmed' %>
-            <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% else %>
-              <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-          <% end %>
-        </div>
+    <div class="container" data-id="<%= booking.id %>" id="booking-container">
+      <h3><strong>Email: </strong><%= booking.user.email %></h3>
+      <div>
+        <p><strong>Check-in: </strong> <%= booking.start_date %></p>
+        <p><strong>Checkout: </strong><%= booking.end_date %></p>
+        <h4><strong>Booking status: </strong><%= booking.status %></h4>
       </div>
-      <% end %>
+      <div>
+        <% if booking.status == 'pending' %>
+        <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post, remote: true %>
+        <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post, remote: true  %>
+        <% elsif booking.status == 'confirmed' %>
+        <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% else %>
+        <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
     <% end %>
   </div>
   <div class="tab-pane fade" id="upcoming-<%= spaceship.id %>" role="tabpanel" aria-labelledby="upcoming-tab">
     <h3>My Upcoming Bookings</h3>
-    <% spaceship.bookings.each do |booking| %>
-    <% if booking.status == 'confirmed' && booking.end_date >= Date.today %>
+    <div id='upcoming-booking-<%= spaceship.id %>'>
+      <% spaceship.bookings.each do |booking| %>
+      <% if booking.status == 'confirmed' && booking.end_date >= Date.today %>
       <div class="container" id="booking-container">
         <h3><strong>Email: </strong><%= booking.user.email %></h3>
         <div>
@@ -61,22 +62,49 @@
         </div>
         <div>
           <% if booking.status == 'pending' %>
-            <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+          <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post, remote: true %>
+          <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
           <% elsif booking.status == 'confirmed' %>
-            <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% else %>
-              <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+          <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+          <% else %>
+          <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
           <% end %>
         </div>
       </div>
       <% end %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
   <div class="tab-pane fade" id="completed-<%= spaceship.id %>" role="tabpanel" aria-labelledby="completed-tab">
     <h3>My Completed Bookings</h3>
     <% spaceship.bookings.each do |booking| %>
     <% if booking.end_date < Date.today %>
+    <div class="container" id="booking-container">
+      <h3><strong>Email: </strong><%= booking.user.email %></h3>
+      <div>
+        <p><strong>Check-in: </strong> <%= booking.start_date %></p>
+        <p><strong>Checkout: </strong><%= booking.end_date %></p>
+        <h4><strong>Booking status: </strong><%= booking.status %></h4>
+      </div>
+      <div>
+        <% if booking.status == 'pending' %>
+        <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post, remote: true %>
+        <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post, remote: true %>
+        <% elsif booking.status == 'confirmed' %>
+        <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% else %>
+        <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="canceled-<%= spaceship.id %>" role="tabpanel" aria-labelledby="canceled-tab">
+    <h3>My Cancelled Bookings</h3>
+    <div id="canceled-booking-<%= spaceship.id %>">
+      <% spaceship.bookings.each do |booking| %>
+      <% if booking.status == 'rejected' || booking.status == 'canceled' %>
       <div class="container" id="booking-container">
         <h3><strong>Email: </strong><%= booking.user.email %></h3>
         <div>
@@ -86,65 +114,43 @@
         </div>
         <div>
           <% if booking.status == 'pending' %>
-            <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+          <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post, remote: true %>
+          <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
           <% elsif booking.status == 'confirmed' %>
-            <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% else %>
-              <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+          <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+          <% elsif booking.status == 'canceled' %>
+          <% else %>
+          <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
           <% end %>
         </div>
       </div>
       <% end %>
-    <% end %>
-  </div>
-  <div class="tab-pane fade" id="canceled-<%= spaceship.id %>" role="tabpanel" aria-labelledby="canceled-tab">
-      <h3>My Cancelled Bookings</h3>
-      <% spaceship.bookings.each do |booking| %>
-      <% if booking.status == 'rejected' || booking.status == 'canceled' %>
-        <div class="container" id="booking-container">
-          <h3><strong>Email: </strong><%= booking.user.email %></h3>
-          <div>
-            <p><strong>Check-in: </strong> <%= booking.start_date %></p>
-            <p><strong>Checkout: </strong><%= booking.end_date %></p>
-            <h4><strong>Booking status: </strong><%= booking.status %></h4>
-          </div>
-          <div>
-            <% if booking.status == 'pending' %>
-              <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-              <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
-            <% elsif booking.status == 'confirmed' %>
-              <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% elsif booking.status == 'canceled' %>
-              <% else %>
-                <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% end %>
-          </div>
-        </div>
-        <% end %>
       <% end %>
+
+
+    </div>
   </div>
   <div class="tab-pane fade" id="all-<%= spaceship.id %>" role="tabpanel" aria-labelledby="all-tab">
     <h3>All of my Bookings</h3>
     <% spaceship.bookings.each do |booking| %>
-      <div class="container" id="booking-container">
-        <h3><strong>Email: </strong><%= booking.user.email %></h3>
-        <div>
-          <p><strong>Check-in: </strong> <%= booking.start_date %></p>
-          <p><strong>Checkout: </strong><%= booking.end_date %></p>
-          <h4><strong>Booking status: </strong><%= booking.status %></h4>
-        </div>
-        <div>
-          <% if booking.status == 'pending' %>
-            <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
-          <% elsif booking.status == 'confirmed' %>
-            <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-            <% else %>
-              <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
-          <% end %>
-        </div>
+    <div class="container" id="booking-container">
+      <h3><strong>Email: </strong><%= booking.user.email %></h3>
+      <div>
+        <p><strong>Check-in: </strong> <%= booking.start_date %></p>
+        <p><strong>Checkout: </strong><%= booking.end_date %></p>
+        <h4><strong>Booking status: </strong><%= booking.status %></h4>
       </div>
+      <div>
+        <% if booking.status == 'pending' %>
+        <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post, remote: true %>
+        <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+        <% elsif booking.status == 'confirmed' %>
+        <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% else %>
+        <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+        <% end %>
+      </div>
+    </div>
     <% end %>
   </div>
 </div>

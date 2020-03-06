@@ -1,0 +1,20 @@
+<% if booking.status == 'rejected' %>
+<div class="container" id="booking-container">
+  <h3><strong>Email: </strong><%= booking.user.email %></h3>
+  <div>
+    <p><strong>Check-in: </strong> <%= booking.start_date %></p>
+    <p><strong>Checkout: </strong><%= booking.end_date %></p>
+    <h4><strong>Booking status: </strong><%= booking.status %></h4>
+  </div>
+  <div>
+    <% if booking.status == 'pending' %>
+      <%= link_to 'Confirm Booking', accept_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+      <%= link_to 'Reject Booking', reject_booking_path(booking.id) , class: 'btn btn-outline-danger', :method => :post %>
+    <% elsif booking.status == 'confirmed' %>
+      <%= link_to 'Unconfirm?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+      <% else %>
+        <%= link_to 'Unreject?', pending_booking_path(booking.id) , class: 'btn btn-outline-success', :method => :post  %>
+    <% end %>
+  </div>
+</div>
+<% end %>
