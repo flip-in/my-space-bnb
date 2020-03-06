@@ -1,0 +1,6 @@
+var card = document.querySelector('[data-id="<%= @booking.id %>"]')
+card.remove()
+
+var box = document.querySelector('#canceled-booking-<%= @booking.spaceship.id %>')
+box.insertAdjacentHTML("afterbegin", '<%= j render "pages/rejected_card", booking: @booking %>')
+

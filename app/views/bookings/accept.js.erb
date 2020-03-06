@@ -1,0 +1,5 @@
+var card = document.querySelector('[data-id="<%= @booking.id %>"]')
+card.remove()
+
+var box = document.querySelector('#upcoming-booking-<%= @booking.spaceship.id %>')
+box.insertAdjacentHTML("afterbegin", '<%= j render "pages/upcoming_card", booking: @booking %>')

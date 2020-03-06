@@ -27,7 +27,9 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'confirmed'
     @booking.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def reject
@@ -35,7 +37,9 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.status = 'rejected'
     @booking.save
-    redirect_to dashboard_path
+    respond_to do |format|
+      format.js
+    end
   end
 
   def pending
