@@ -27,11 +27,12 @@
       <div class="reviews mt-4">
         <h1><light>Reviews for </light><%= @spaceship.name %> :</h1>
         <% @spaceship.reviews.each do |review| %>
+          <%= random_avatar( {height: 40, width: 40})%>
           <span><strong><%= review.user.name %></strong></span><div class="stars-container">
             <% i = 1 %>
             <% j = 0 %>
             <% until j == 5  %>
-              <ul class="stars">
+              <ul class="stars ">
                 <% if i <= review.stars %>
                   <li><i class="fas fa-star"></i></li>
                 <% else %>

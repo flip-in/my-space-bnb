@@ -8,4 +8,9 @@ module ApplicationHelper
     end
     return @avatar_user
   end
+
+  def random_avatar(data = {})
+    @avatar = image_tag("avatar/#{rand(6)}.png",data) 
+    return @avatar 
+  end
 end
