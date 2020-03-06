@@ -11,6 +11,10 @@
   box-shadow: 10px 8px 62px 0px rgba(184, 170, 184, 0.61);
 }
 
+.container-all {
+  padding: 50px 100px;
+}
+
 #spaceships {
   display: flex;
   flex-wrap: wrap;
@@ -49,4 +53,20 @@
   box-shadow: 4px 6px 5px 0px rgba(217,217,217,0.4);
 }
 
+.empty-current {
+  padding: 20px;
+}
 
+.empty-current h1 {
+  font-size: 28px;
+}
+
+#trips {
+  background-color: white;
+  padding: 20px;
+}
+
+#listings {
+  background-color: white;
+  justify-content: center;
+}

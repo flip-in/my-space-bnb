@@ -1,5 +1,5 @@
-<div class="container">
-  <h1>Welcome <%= current_user.email %></h1>
+<div class="container-all">
+  <h1>Welcome, <%= current_user.name %></h1>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="trips-tab" data-toggle="tab" href="#trips" role="tab" aria-controls="trips" aria-selected="true">Trips</a>
@@ -17,8 +17,8 @@
       <h1><strong>These are the your current trips</strong></h1>
   <!-- an each do loop to take the users current bookings and create cards with their details -->
       <% if @current_bookings.empty? %>
-        <div>
-          <h2>you have no current bookings</h2>
+        <div class="empty-current">
+          <h1>you have no current bookings</h1>
         </div>
       <% else %>
         <div class="current-trips"> <!-- for grid -->
