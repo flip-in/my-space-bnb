@@ -1,0 +1,65 @@
+.small-card {
+  padding: 0px !important;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.09) !important;
+  border-radius: 8px;
+  border-color: #f9f9f9 !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+  img {
+    width: 100%;
+    object-fit: cover;
+    height: 200px;
+  }
+}
+
+.title-container{
+
+  h5 {
+    font-size: 16px;
+    margin-bottom: -2px;
+    color: #545454;
+
+    a {
+      color: #545454;
+    }
+  }
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #777575;
+  font-weight: 300;
+
+  i {
+    margin-right: 3px;
+  }
+}
+
+.spaceship-type {
+  margin-bottom: 3px;
+  color: #888888;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.card-body {
+  padding: 10px 14px;
+}
+
+.spaceship-booking-link {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #6607bd;
+  border: none;
+
+}
+
+.spaceship-booking-link:hover {
+  background-color: #6607bd !important;
+  opacity: 0.9;
+}
+// .small-card-col {
+//   padding: 0px 35px;
+// }
