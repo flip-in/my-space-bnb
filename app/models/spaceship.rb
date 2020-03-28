@@ -12,5 +12,4 @@ class Spaceship < ApplicationRecord
       { from: range[0], to: range[1] }
     end
   end
-  
 end
